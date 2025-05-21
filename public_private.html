@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public vs Private Key Encryption</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav>
+    <ul class="navbar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="hash_simulator.html">Hash Simulator</a></li>
+        <li><a href="public_private.html">Public/Private Encryption</a></li>
+    </ul>
+</nav>
+<main class="simulator-page">
+    <h1>Public vs Private Key Encryption</h1>
+    <section id="key-controls">
+        <button id="generate-keys">Generate Key Pair</button>
+    </section>
+    <section id="keys-display">
+        <label><strong>Public Key (Base64 SPKI):</strong></label>
+        <textarea id="public-key" readonly rows="5"></textarea>
+        <label><strong>Private Key (Base64 PKCS8):</strong></label>
+        <textarea id="private-key" readonly rows="5"></textarea>
+    </section>
+    <section id="encryption-controls">
+        <label><strong>Plaintext:</strong></label>
+        <textarea id="plaintext" rows="3" placeholder="Enter message to encrypt"></textarea>
+        <button id="encrypt-btn">Encrypt</button>
+    </section>
+    <section id="ciphertext-display">
+        <label><strong>Ciphertext (Base64):</strong></label>
+        <textarea id="ciphertext" readonly rows="5"></textarea>
+    </section>
+    <section id="decryption-controls">
+        <button id="decrypt-btn">Decrypt</button>
+    </section>
+    <section id="decrypted-display">
+        <label><strong>Decrypted Message:</strong></label>
+        <textarea id="decrypted" readonly rows="3"></textarea>
+    </section>
+</main>
+<script src="keys.js"></script>
+</body>
+</html>

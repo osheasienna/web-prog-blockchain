@@ -1,0 +1,37 @@
+/* Base & Navbar styles omitted for brevity (same as before) */
+/* Additions for key encryption page */
+#key-controls,
+#keys-display,
+#encryption-controls,
+#ciphertext-display,
+#decryption-controls,
+#decrypted-display {
+    margin: 20px auto;
+    max-width: 600px;
+}
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #28a745;
+    border-radius: 4px;
+    resize: vertical;
+    margin-top: 4px;
+}
+label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
+button {
+    padding: 10px 18px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 8px;
+}
+button:hover {
+    background: #0056b3;
+}
