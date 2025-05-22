@@ -8,6 +8,9 @@
     background: #0d0d0d;
     color: #fef6e4;
     font-family: 'Anton', sans-serif;
+    margin: 0;
+    padding: 2rem;
+    overflow-x: hidden;
   }
   
   header {
@@ -116,6 +119,7 @@
     transform: translateX(-200%);
     opacity: 0;
     transition: all 0.6s ease;
+    position: relative;
   }
   
   .connector {
@@ -126,4 +130,133 @@
     transition: opacity 0.3s ease;
   }
   
+  /* Tab on the right */
+  .block.tab-right::after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    background-color: #4b79ff;
+    border-radius: 50%;
+    position: absolute;
+    right: -15px;
+    top: 45px;
+  }
+  
+  /* Slot on the left */
+  .block.slot-left::before {
+    content: "";
+    width: 30px;
+    height: 30px;
+    background-color: #0d0d0d; /* match background */
+    border-radius: 50%;
+    position: absolute;
+    left: -15px;
+    top: 45px;
+    z-index: 2;
+  }
+  
+
+  @keyframes snapIn {
+    0% {
+      transform: translateX(-200%);
+      opacity: 0;
+    }
+    80% {
+      transform: translateX(10px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .blockchain-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    overflow: hidden;
+    gap: 40px; /* Initial gap between blocks for sliding */
+    transition: gap 0.6s ease;
+  }
+  
+  .blockchain-container.snap-together {
+    gap: 0; /* Shrink gap to zero when snapping */
+  }
+  
+  .block {
+    transform: translateX(-200%);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+  }
+  
+  .block.snap {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  .carousel-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    cursor: grab;
+    padding-bottom: 1rem;
+    scroll-behavior: smooth;
+  }
+  
+  .carousel-container:active {
+    cursor: grabbing;
+  }
+  
+  .card {
+    flex: 0 0 300px;
+    background: #222;
+    border-radius: 12px;
+    padding: 1rem;
+    color: #eee;
+    box-shadow: 0 0 8px #555;
+    user-select: none;
+    transition: all 0.3s ease;
+    position: relative;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .card h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.4rem;
+    text-align: center;
+  }
+  
+  .definition {
+    margin-top: auto;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    color: #ccc;
+  }
+  
+  .card.expanded {
+    background: #6a5acd; /* changed color */
+    flex: 0 0 320px;
+    height: 400px;
+    box-shadow: 0 0 20px #8a7fff;
+    cursor: default;
+    z-index: 10;
+  }
+  
+  .card.expanded .definition {
+    opacity: 1;
+    max-height: 300px;
+    margin-top: 1rem;
+  }
   
