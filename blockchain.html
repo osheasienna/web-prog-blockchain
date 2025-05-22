@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blockchain Animation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+    <h1> How does blockchain work?</h1>
+  <div class="blockchain-container" id="blockchain">
+    <div class="block tab-right">Block 1</div>
+    <div class="connector"></div>
+    <div class="block slot-left tab-right">Block 2</div>
+    <div class="connector"></div>
+    <div class="block slot-left">Block 3</div>    
+
+  </div>
+
+  <div class="carousel-container" id="carousel">
+    <div class="card" data-term="Blockchain" data-definition="A decentralized digital ledger that records transactions across many computers.">
+      <h3>Blockchain</h3>
+      <p class="definition"></p>
+    </div>
+    <div class="card" data-term="Cryptocurrency" data-definition="Digital or virtual currency that uses cryptography for security.">
+      <h3>Cryptocurrency</h3>
+      <p class="definition"></p>
+    </div>
+    <div class="card" data-term="Smart Contract" data-definition="Self-executing contracts with the terms directly written into code.">
+      <h3>Smart Contract</h3>
+      <p class="definition"></p>
+    </div>
+    <div class="card" data-term="Node" data-definition="A computer that participates in a blockchain network.">
+      <h3>Node</h3>
+      <p class="definition"></p>
+    </div>
+    <div class="card" data-term="Hash" data-definition="A function that converts an input into a fixed-size string of characters, which appears random.">
+      <h3>Hash</h3>
+      <p class="definition"></p>
+    </div>
+  </div>
+  
+  <!-- Quiz Button -->
+<button id="openQuizBtn" class="quiz-button">Take the Quiz</button>
+
+<!-- Modal Quiz Widget -->
+<div id="quizModal" class="quiz-modal">
+  <div class="quiz-content">
+    <span id="closeQuizBtn" class="close-btn">&times;</span>
+    <h2>Blockchain Basics Quiz</h2>
+    <div id="quizContainer"></div>
+    <button id="submitQuizBtn" class="submit-btn">Submit</button>
+    <div id="quizResult" class="quiz-result"></div>
+  </div>
+</div>
+
+  <script src="home.js"></script>
+</body>
+</html>
