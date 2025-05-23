@@ -1,5 +1,56 @@
-/* Base & Navbar styles omitted for brevity (same as before) */
-/* Additions for key encryption page */
+/* ------------ Shared base & nav styles ------------ */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    list-style: none;
+    display: flex;
+    background: #333;
+    margin: 0;
+    padding: .5rem 1rem;
+}
+.navbar li + li { margin-left: 1rem; }
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+.navbar a:hover { color: #ffdd57; }
+
+/* ------------ Hash Simulator styles ------------ */
+.chain-container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px auto;
+}
+.block {
+    position: relative;
+    background: #fff;
+    border: 2px solid #28a745;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 0 20px 20px 0;
+    width: 200px;
+    box-shadow: 0 3px 6px rgba(0,0,0,.1);
+    transition: transform .2s ease;
+}
+.block:hover { transform: translateY(-4px); }
+.connector {
+    position: absolute;
+    background: #28a745;
+    pointer-events: none;
+}
+.connector.horizontal { height: 2px; }
+.connector.vertical   { width: 2px; }
+
+/* ------------ Public/Private Key page styles ------------ */
 #key-controls,
 #keys-display,
 #encryption-controls,
@@ -29,10 +80,7 @@ button {
     color: white;
     border-radius: 4px;
     cursor: pointer;
-    transition: background 0.3s ease;
     margin-top: 8px;
+    transition: background .3s ease;
 }
-button:hover {
-    background: #0056b3;
-}
-
+button:hover { background: #0056b3; }

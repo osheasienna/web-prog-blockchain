@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
   }
-  
+
   body {
     background: #0d0d0d;
     color: #fef6e4;
@@ -12,56 +12,56 @@
     padding: 2rem;
     overflow-x: hidden;
   }
-  
+
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2rem 4rem;
   }
-  
+
   .logo {
     font-size: 1.5rem;
   }
-  
+
   nav a {
     color: #fef6e4;
     margin-left: 2rem;
     text-decoration: none;
     font-size: 1rem;
   }
-  
+
   nav .mint-now {
     border: 1px solid #fef6e4;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: background 0.3s ease;
   }
-  
+
   nav .mint-now:hover {
     background: #fef6e4;
     color: #0d0d0d;
   }
-  
+
   .hero {
     display: flex;
     height: 90vh;
     padding: 0 4rem;
   }
-  
+
   .left {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-  
+
   .left h1 {
     font-size: 6rem;
     line-height: 1;
     color: #fef6e4;
   }
-  
+
   .left .nft {
     font-family: 'Pacifico', cursive;
     color: #a259ff;
@@ -70,14 +70,14 @@
     top: -1rem;
     left: 0.5rem;
   }
-  
+
   .left p {
     margin: 2rem 0;
     font-size: 1.2rem;
     font-family: sans-serif;
     color: #d4d4d4;
   }
-  
+
   .cta {
     background: #a259ff;
     color: white;
@@ -88,11 +88,11 @@
     width: fit-content;
     transition: background 0.3s ease;
   }
-  
+
   .cta:hover {
     background: #8338ec;
   }
-  
+
   .right {
     flex: 1;
   }
@@ -104,7 +104,7 @@
     margin-top: 100px;
     overflow: hidden;
   }
-  
+
   .block {
     width: 120px;
     height: 120px;
@@ -121,7 +121,7 @@
     transition: all 0.6s ease;
     position: relative;
   }
-  
+
   .connector {
     width: 50px;
     height: 4px;
@@ -129,7 +129,7 @@
     opacity: 0;
     transition: opacity 0.3s ease;
   }
-  
+
   /* Tab on the right */
   .block.tab-right::after {
     content: "";
@@ -141,7 +141,7 @@
     right: -15px;
     top: 45px;
   }
-  
+
   /* Slot on the left */
   .block.slot-left::before {
     content: "";
@@ -154,7 +154,7 @@
     top: 45px;
     z-index: 2;
   }
-  
+
 
   @keyframes snapIn {
     0% {
@@ -169,7 +169,7 @@
       transform: translateX(0);
     }
   }
-  
+
   .blockchain-container {
     display: flex;
     align-items: center;
@@ -179,26 +179,26 @@
     gap: 40px; /* Initial gap between blocks for sliding */
     transition: gap 0.6s ease;
   }
-  
+
   .blockchain-container.snap-together {
     gap: 0; /* Shrink gap to zero when snapping */
   }
-  
+
   .block {
     transform: translateX(-200%);
     opacity: 0;
     transition: transform 0.6s ease, opacity 0.6s ease;
   }
-  
+
   .block.snap {
     transform: translateX(0);
     opacity: 1;
   }
-  
+
   * {
     box-sizing: border-box;
   }
-  
+
   .carousel-container {
     display: flex;
     overflow-x: auto;
@@ -207,11 +207,11 @@
     padding-bottom: 1rem;
     scroll-behavior: smooth;
   }
-  
+
   .carousel-container:active {
     cursor: grabbing;
   }
-  
+
   .card {
     flex: 0 0 300px;
     background: #222;
@@ -227,13 +227,13 @@
     flex-direction: column;
     justify-content: flex-start;
   }
-  
+
   .card h3 {
     margin: 0 0 1rem 0;
     font-size: 1.4rem;
     text-align: center;
   }
-  
+
   .definition {
     margin-top: auto;
     opacity: 0;
@@ -244,7 +244,7 @@
     line-height: 1.2;
     color: #ccc;
   }
-  
+
   .card.expanded {
     background: #6a5acd; /* changed color */
     flex: 0 0 320px;
@@ -253,7 +253,7 @@
     cursor: default;
     z-index: 10;
   }
-  
+
   .card.expanded .definition {
     opacity: 1;
     max-height: 300px;
@@ -273,11 +273,11 @@
     transition: background 0.3s ease;
     margin: 2rem 0;
   }
-  
+
   .quiz-button:hover {
     background: #8338ec;
   }
-  
+
   /* Modal Overlay */
   .quiz-modal {
     display: none;
@@ -290,7 +290,7 @@
     background: rgba(0, 0, 0, 0.8);
     overflow: auto;
   }
-  
+
   /* Modal Content */
   .quiz-content {
     background: #1e1e2f;
@@ -302,7 +302,7 @@
     color: #eee;
     position: relative;
   }
-  
+
   /* Close Button */
   .close-btn {
     position: absolute;
@@ -312,25 +312,25 @@
     color: #aaa;
     cursor: pointer;
   }
-  
+
   .close-btn:hover {
     color: #fff;
   }
-  
+
   /* Quiz Styles */
   .quiz-question {
     margin-bottom: 1.5rem;
   }
-  
+
   .quiz-question h4 {
     margin-bottom: 0.5rem;
   }
-  
+
   .quiz-option {
     display: block;
     margin: 0.25rem 0;
   }
-  
+
   .submit-btn {
     background: #6a5acd;
     color: white;
@@ -340,15 +340,14 @@
     cursor: pointer;
     margin-top: 1rem;
   }
-  
+
   .submit-btn:hover {
     background: #5743c6;
   }
-  
+
   .quiz-result {
     margin-top: 1rem;
     font-weight: bold;
     font-size: 1.1rem;
   }
-  
-  
+
