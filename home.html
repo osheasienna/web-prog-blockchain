@@ -8,29 +8,57 @@
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <div class="logo">My Little Blockain</div>
-    <nav>
-      <a href="#">Collection</a>
-      <a href="#">Roadmap</a>
-      <a href="#">Team</a>
-      <a href="#">Contact</a>
-      <a href="#" class="mint-now">Mint Now</a>
-    </nav>
-  </header>
+<header>
+  <div class="logo">My Little Blockain</div>
+  <nav>
+    <a href="simulation.html">Simulation</a>
+    <a href="use_cases.html">Use Cases</a>
+    <a href="#">Quiz</a>
+    <a href="#" class="mint-now">Mint Now</a>
+  </nav>
+</header>
 
-  <main class="hero">
-    <div class="left">
-      <h1>
-        LEARN<br>ABOUT<br>THE<br>WOLRD<br>
-        <span class="nft">of</span><br>BLOCKCHAIN
-      </h1>
-      <p>Explore the architecture of trustless systems and digital ledgers.</p>
-      <a href="blockchain.html" class="cta">Find Out More</a>
+<main class="hero">
+  <div class="left">
+    <h1>
+      LEARN<br>ABOUT<br>THE<br>WOLRD<br>
+      <span class="nft">of</span><br>BLOCKCHAIN
+    </h1>
+    <p>Explore the architecture of trustless systems and digital ledgers.</p>
+    <a href="blockchain.html" class="cta">Find Out More</a>
+  </div>
+
+  <div class="right">
+    <div class="container">
+      <div class="coin bitcoin">
+        <div class="face front">
+          <div class="symbol">₿</div>
+          <div class="circle"></div>
+        </div>
+        <div class="face back">
+          <div class="symbol">₿</div>
+          <div class="circle"></div>
+        </div>
+        <!-- JS will inject the 20 .side slices -->
+      </div>
     </div>
-    <div class="right">
-      
-    </div> 
-  </main>
+  </div>
+</main>
+
+<!-- Coin‐edge injector script -->
+<script>
+  const coin = document.querySelector('.coin.bitcoin');
+  for (let i = 0; i < 20; i++) {
+    const fig = document.createElement('figure');
+    fig.className = 'side';
+    fig.style.transform = `
+          translate3d(-50%,-50%,0)
+          rotateY(90deg)
+          rotateX(${i * (360/20)}deg)
+          translateZ(calc(var(--r) - 0.1em))
+        `;
+    coin.appendChild(fig);
+  }
+</script>
 </body>
 </html>

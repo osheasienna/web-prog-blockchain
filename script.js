@@ -82,9 +82,11 @@ function drawConnectors() {
         } else {
             // vertical
             line.classList.add('vertical');
-            line.style.left = `${r2.left + r2.width / 2 - cRect.left}px`;
-            line.style.top = `${r1.bottom - cRect.top}px`;
-            line.style.height = `${r2.top - r1.bottom}px`;
+// drop from the bottom‐center of the *previous* block
+            line.style.left   = `${r1.left + r1.width/2  - cRect.left}px`;
+            line.style.top    = `${r1.bottom            - cRect.top }px`;
+// extend down to the top of the *current* block
+            line.style.height = `${r2.top   - r1.bottom           }px`;
         }
         container.appendChild(line);
     });
