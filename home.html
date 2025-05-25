@@ -22,7 +22,7 @@
 <main class="hero">
   <div class="left">
     <h1>
-      LEARN<br>ABOUT<br>THE<br>WOLRD<br>
+      LEARN<br>ABOUT<br>THE<br>WORLD<br>
       <span class="nft">of</span><br>BLOCKCHAIN
     </h1>
     <p>Explore the architecture of trustless systems and digital ledgers.</p>
@@ -45,21 +45,6 @@
     </div>
   </div>
 </main>
-
-<!-- Coin‐edge injector script -->
-<script>
-  const coin = document.querySelector('.coin.bitcoin');
-  for (let i = 0; i < 20; i++) {
-    const fig = document.createElement('figure');
-    fig.className = 'side';
-    fig.style.transform = `
-          translate3d(-50%,-50%,0)
-          rotateY(90deg)
-          rotateX(${i * (360/20)}deg)
-          translateZ(calc(var(--r) - 0.1em))
-        `;
-    coin.appendChild(fig);
-  }
-</script>
+<script src="home.js"></script>
 </body>
 </html>
