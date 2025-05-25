@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Scroll-Driven Blockchain Demo</title>
+  <title>Simulation</title>
 
   <!-- Inter from Google Fonts -->
   <link
@@ -36,11 +36,18 @@
       top: 11rem;
       left: 50%;
       transform: translateX(-50%);
-      width: 150vw;
-      max-width: 900px;
-      height: 450px;
+      width: 80%;
+      height: 60%;
       background: #ddd;
       z-index: 1;             /* so text is always above it */
+      justify-content: center;
+    }
+
+    .simulator iframe {
+      display: block;    /* eliminate any inline‐block whitespace */
+      width: 100%;       /* fill container’s width */
+      height: 100%;      /* fill container’s height */
+      border: none;      /* optional: remove default border */
     }
 
     /* fixed vertical bar nav */
@@ -120,102 +127,76 @@
 <body>
 <div class="wrapper">
   <!-- your fixed simulator -->
-  <div class="simulator"></div>
-
-  <!-- the scrolling sections -->
-  <section id="hash">
-    <div class="text">
-      <h2>01 Hash</h2>
-      <p>
-        A hash is the fixed-length fingerprint of any input data, produced by a
-        one-way cryptographic function (e.g. SHA-256). Even a tiny change yields
-        a completely different output.
-      </p>
-    </div>
-    <iframe src="hash_simulation.html"
-            width="600"
-            height="300"
+  <div class="simulator">
+    <iframe id="simulator-frame"
+            src="hash_simulation.html"
             title="SHA-256 Simulator">
     </iframe>
-  </section>
+  </div>
+</div>
 
-  <section id="block">
-    <div class="text">
-      <h2>02 Block</h2>
-      <p>
-        A block bundles a batch of validated transactions (or data), plus the
-        previous block’s hash, timestamp, and a nonce miners adjust to satisfy
-        proof-of-work.
-      </p>
-    </div>
-    <iframe src="block_simulation.html"
-            width="600"
-            height="300"
-            title="Block Simulator">
-    </iframe>
-  </section>
+  <!-- the scrolling sections -->
+<section id="hash" data-sim-src="hash_simulation.html" data-sim-title="SHA-256 Simulator">
+  <div class="text">
+    <h2>01 Hash</h2>
+    <p>
+      A hash is the fixed-length fingerprint of any input data, produced by a
+      one-way cryptographic function (e.g. SHA-256). Even a tiny change yields
+      a completely different output.
+    </p>
+  </div>
+</section>
 
-  <section id="chain">
-    <div class="text">
-      <h2>03 Blockchain</h2>
-      <p>
-        The blockchain is the ordered, tamper-evident chain of blocks, each
-        referencing its predecessor—making earlier blocks immutable.
-      </p>
-    </div>
-    <iframe src="blockchain_simulation.html"
-            width="600"
-            height="300"
-            title="Blockchain Simulator">
-    </iframe>
-  </section>
+<section id="block" data-sim-src="block_simulation.html" data-sim-title="Block Construction Simulator">
+  <div class="text">
+    <h2>02 Block</h2>
+    <p>
+      A block bundles a batch of validated transactions (or data), plus the
+      previous block’s hash, timestamp, and a nonce miners adjust to satisfy
+      proof-of-work.
+    </p>
+  </div>
+</section>
 
-  <section id="network">
-    <div class="text">
-      <h2>04 Network</h2>
-      <p>
-        A distributed network is a set of independent nodes that each store
-        and verify a copy of the blockchain, maintaining consensus without a
-        central authority.
-      </p>
-    </div>
-    <iframe src="network_simulation.html"
-            width="600"
-            height="300"
-            title="Network Simulator">
-    </iframe>
-  </section>
+<section id="chain" data-sim-src="chain_simulation.html" data-sim-title="Chain Linking Simulator">
+  <div class="text">
+    <h2>03 Chain</h2>
+    <p>
+      Blocks link together via each block's reference to the previous block's hash,
+      forming an immutable ledger.
+    </p>
+  </div>
+</section>
 
-  <section id="tokens">
-    <div class="text">
-      <h2>05 Tokens</h2>
-      <p>
-        A token is a digital unit of value tracked on-chain (via UTXOs or
-        balances). Transactions consume old outputs and create new ones so coins
-        can’t be double-spent.
-      </p>
-    </div>
-    <iframe src="token_simulator.html"
-            width="600"
-            height="300"
-            title="Token Simulator">
-    </iframe>
-  </section>
+<section id="network" data-sim-src="network_simulation.html" data-sim-title="Network Propagation Simulator">
+  <div class="text">
+    <h2>04 Network</h2>
+    <p>
+      Nodes broadcast new blocks and transactions to each other, ensuring everyone
+      stays in consensus.
+    </p>
+  </div>
+</section>
 
-  <section id="coinbase">
-    <div class="text">
-      <h2>06 Coinbase</h2>
-      <p>
-        The coinbase transaction is the first in every block, minting new coins
-        to reward the miner. It has no ordinary inputs—just protocol-defined issuance.
-      </p>
-    </div>
-    <iframe src="coinbase_simulator.html"
-            width="600"
-            height="300"
-            title="Coinbase Simulator">
-    </iframe>
-  </section>
+<section id="tokens" data-sim-src="token_simulation.html" data-sim-title="Tokens & Balance Simulator">
+  <div class="text">
+    <h2>05 Tokens</h2>
+    <p>
+      Tokens represent value. Balances update as transactions move tokens
+      between addresses.
+    </p>
+  </div>
+</section>
+
+<section id="coinbase" data-sim-src="coinbase_simulation.html" data-sim-title="Coinbase Transaction Simulator">
+  <div class="text">
+    <h2>06 Coinbase</h2>
+    <p>
+      The coinbase transaction rewards the miner with new tokens for
+      securing the network.
+    </p>
+  </div>
+</section>
 
   <!-- fixed right-bar nav -->
   <aside>
@@ -233,7 +214,8 @@
 </div>
 
 <script>
-  // Observe when each section crosses the halfway mark
+  const simFrame = document.getElementById('simulator-frame');
+
   const opts = { root: null, threshold: 0.5 };
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -242,6 +224,9 @@
       if (e.isIntersecting) {
         e.target.classList.add('active');
         bar.classList.add('active');
+        // Swap simulator iframe
+        simFrame.src = e.target.dataset.simSrc;
+        simFrame.title = e.target.dataset.simTitle;
       } else {
         e.target.classList.remove('active');
         bar.classList.remove('active');
