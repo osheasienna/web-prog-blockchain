@@ -1,5 +1,6 @@
 "use strict";
 
+
 window.addEventListener('DOMContentLoaded', () => {
   const coins = document.querySelectorAll('.coin');
   const connectors = document.querySelectorAll('.connector');

@@ -7,6 +7,22 @@
     padding: 0;
     box-sizing: border-box;
   }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 2.2rem;
+    font-family: 'Pacifico', cursive;
+    letter-spacing: 0.05em;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
   
   body {
     background: #0d0d0d;
