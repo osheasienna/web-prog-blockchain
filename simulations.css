@@ -1,0 +1,111 @@
+
+    /* hide the native scrollbar */
+    html {
+      scrollbar-width: none; /* Firefox */
+    }
+    body::-webkit-scrollbar {
+      display: none;         /* WebKit */
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      overflow-y: scroll;    /* enable scrolling, but invisible scrollbar */
+    }
+
+    .wrapper {
+      position: relative;
+    }
+
+    /* Fixed simulator on the right */
+    .simulator {
+      position: fixed;
+      top: 11rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 60%;
+      background: #ddd;
+      z-index: 1;             /* so text is always above it */
+      justify-content: center;
+    }
+
+    .simulator iframe {
+      display: block;    /* eliminate any inline‐block whitespace */
+      width: 100%;       /* fill container’s width */
+      height: 100%;      /* fill container’s height */
+      border: none;      /* optional: remove default border */
+    }
+
+    /* fixed vertical bar nav */
+    aside {
+      position: fixed;
+      top: 50%;
+      right: 2rem;
+      transform: translateY(-50%);
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    nav li.bar {
+      width: 2px;
+      height: 60px;
+      background: #000;
+      margin: 1rem 0;
+      transition: width 0.2s;
+      cursor: pointer;
+    }
+    nav li.bar.active {
+      width: 8px;
+    }
+
+    /* each section fills the screen */
+    section {
+      position: relative;
+      height: 100vh;
+    }
+
+    /* title+desc always in the same place */
+    .text {
+      position: absolute;
+      top: 50px;       /* sits just above the simulator (which is at ~200px) */
+      left: 5rem;
+      right: 8rem;
+
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      overflow: hidden;
+
+      opacity: 0;
+      transform: translateY(100px);   /* tiny upward offset */
+      transition:
+              opacity 1s ease-out,
+              transform 0.4s ease-out;
+
+      z-index: 2;
+    }
+    /* fade-in of the active section */
+    section.active .text {
+      opacity: 1;
+      transform: translateY(0);         /* <-- drop into natural spot */
+    }
+
+    /* clamp sizes so everything fits on one line */
+    .text h2 {
+      flex: none;
+      font-size: clamp(50px, 8vw, 80px);
+      margin: 0 1rem 0 0;
+      line-height: 1;
+    }
+
+    .text p {
+      flex: 1 1 auto;          /* take remaining space */
+      font-size: clamp(14px, 1vw, 16px);
+      margin: 0 0 0 2rem;
+      line-height: 1.2;
+      white-space: normal;     /* allow wrapping inside p */
+      word-break: break-word;  /* prevent runaway words */
+    }
