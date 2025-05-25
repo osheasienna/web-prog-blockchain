@@ -1,111 +1,146 @@
+/*---------------------------------
+  Scrollbar & Base Styles
+---------------------------------*/
 
-    /* hide the native scrollbar */
-    html {
-      scrollbar-width: none; /* Firefox */
-    }
-    body::-webkit-scrollbar {
-      display: none;         /* WebKit */
-    }
+/* Hide native scrollbars */
+html {
+    scrollbar-width: none; /* Firefox */
+  }
+  body::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      overflow-y: scroll;    /* enable scrolling, but invisible scrollbar */
-    }
-
-    .wrapper {
-      position: relative;
-    }
-
-    /* Fixed simulator on the right */
-    .simulator {
-      position: fixed;
-      top: 11rem;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      height: 60%;
-      background: #ddd;
-      z-index: 1;             /* so text is always above it */
-      justify-content: center;
-    }
-
-    .simulator iframe {
-      display: block;    /* eliminate any inline‐block whitespace */
-      width: 100%;       /* fill container’s width */
-      height: 100%;      /* fill container’s height */
-      border: none;      /* optional: remove default border */
-    }
-
-    /* fixed vertical bar nav */
-    aside {
-      position: fixed;
-      top: 50%;
-      right: 2rem;
-      transform: translateY(-50%);
-    }
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    nav li.bar {
-      width: 2px;
-      height: 60px;
-      background: #000;
-      margin: 1rem 0;
-      transition: width 0.2s;
-      cursor: pointer;
-    }
-    nav li.bar.active {
-      width: 8px;
-    }
-
-    /* each section fills the screen */
-    section {
-      position: relative;
-      height: 100vh;
-    }
-
-    /* title+desc always in the same place */
-    .text {
-      position: absolute;
-      top: 50px;       /* sits just above the simulator (which is at ~200px) */
-      left: 5rem;
-      right: 8rem;
-
-      display: flex;
-      align-items: center;
-      flex-wrap: nowrap;
-      overflow: hidden;
-
-      opacity: 0;
-      transform: translateY(100px);   /* tiny upward offset */
-      transition:
-              opacity 1s ease-out,
-              transform 0.4s ease-out;
-
-      z-index: 2;
-    }
-    /* fade-in of the active section */
-    section.active .text {
-      opacity: 1;
-      transform: translateY(0);         /* <-- drop into natural spot */
-    }
-
-    /* clamp sizes so everything fits on one line */
-    .text h2 {
-      flex: none;
-      font-size: clamp(50px, 8vw, 80px);
-      margin: 0 1rem 0 0;
-      line-height: 1;
-    }
-
-    .text p {
-      flex: 1 1 auto;          /* take remaining space */
-      font-size: clamp(14px, 1vw, 16px);
-      margin: 0 0 0 2rem;
-      line-height: 1.2;
-      white-space: normal;     /* allow wrapping inside p */
-      word-break: break-word;  /* prevent runaway words */
-    }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 2.2rem;
+    font-family: 'Pacifico', cursive;
+    letter-spacing: 0.05em;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  
+  body {
+    overflow-y: scroll;
+    background: #0d0d0d;
+    color: #fef6e4;
+    font-family: 'Anton', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Wrapper container */
+  .wrapper {
+    position: relative;
+  }
+  
+  /*---------------------------------
+    Simulator Styles
+  ---------------------------------*/
+  .simulator {
+    position: fixed;
+    top: 11rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 60%;
+    background: #1a1a1a;
+    border: 2px solid #ff9f1c;
+    border-radius: 0.75rem;
+    z-index: 1;
+    box-shadow: 0 0 1rem rgba(255, 159, 28, 0.4);
+  }
+  
+  .simulator iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: inherit;
+  }
+  
+  /*---------------------------------
+    Section & Text Styling
+  ---------------------------------*/
+  section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-left: 5rem;
+    padding-right: 8rem;
+    background: transparent;
+  }
+  
+  .text {
+    position: relative;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: opacity 1s ease-out, transform 0.4s ease-out;
+    z-index: 2;
+  }
+  
+  section.active .text {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .text h2 {
+    flex: none;
+    font-size: clamp(50px, 8vw, 80px);
+    margin: 0 1rem 0 0;
+    line-height: 1;
+    color: #ff9f1c;
+  }
+  
+  .text p {
+    flex: 1 1 auto;
+    font-size: clamp(14px, 1vw, 16px);
+    margin: 0 0 0 2rem;
+    line-height: 1.4;
+    word-break: break-word;
+    white-space: normal;
+    color: #fef6e4;
+  }
+  
+  /*---------------------------------
+    Navigation Bar
+  ---------------------------------*/
+  aside {
+    position: fixed;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+  }
+  
+  aside nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav li.bar {
+    width: 2px;
+    height: 60px;
+    background: #fef6e4;
+    margin: 1rem 0;
+    transition: width 0.2s, background 0.3s;
+    cursor: pointer;
+  }
+  
+  nav li.bar.active {
+    width: 8px;
+    background: #ff9f1c;
+  }
+  
