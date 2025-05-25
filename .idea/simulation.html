@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Scroll-Driven Blockchain Demo</title>
+
+  <!-- Inter from Google Fonts -->
+  <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+          rel="stylesheet"
+  />
+
+  <style>
+    /* hide the native scrollbar */
+    html {
+      scrollbar-width: none; /* Firefox */
+    }
+    body::-webkit-scrollbar {
+      display: none;         /* WebKit */
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      overflow-y: scroll;    /* enable scrolling, but invisible scrollbar */
+    }
+
+    .wrapper {
+      position: relative;
+    }
+
+    /* Fixed simulator on the right */
+    .simulator {
+      position: fixed;
+      top: 11rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150vw;
+      max-width: 900px;
+      height: 450px;
+      background: #ddd;
+      z-index: 1;             /* so text is always above it */
+    }
+
+    /* fixed vertical bar nav */
+    aside {
+      position: fixed;
+      top: 50%;
+      right: 2rem;
+      transform: translateY(-50%);
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    nav li.bar {
+      width: 2px;
+      height: 60px;
+      background: #000;
+      margin: 1rem 0;
+      transition: width 0.2s;
+      cursor: pointer;
+    }
+    nav li.bar.active {
+      width: 8px;
+    }
+
+    /* each section fills the screen */
+    section {
+      position: relative;
+      height: 100vh;
+    }
+
+    /* title+desc always in the same place */
+    .text {
+      position: absolute;
+      top: 50px;       /* sits just above the simulator (which is at ~200px) */
+      left: 5rem;
+      right: 8rem;
+
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      overflow: hidden;
+
+      opacity: 0;
+      transform: translateY(100px);   /* tiny upward offset */
+      transition:
+              opacity 1s ease-out,
+              transform 0.4s ease-out;
+
+      z-index: 2;
+    }
+    /* fade-in of the active section */
+    section.active .text {
+      opacity: 1;
+      transform: translateY(0);         /* <-- drop into natural spot */
+    }
+
+    /* clamp sizes so everything fits on one line */
+    .text h2 {
+      flex: none;
+      font-size: clamp(50px, 8vw, 80px);
+      margin: 0 1rem 0 0;
+      line-height: 1;
+    }
+
+    .text p {
+      flex: 1 1 auto;          /* take remaining space */
+      font-size: clamp(14px, 1vw, 16px);
+      margin: 0 0 0 2rem;
+      line-height: 1.2;
+      white-space: normal;     /* allow wrapping inside p */
+      word-break: break-word;  /* prevent runaway words */
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <!-- your fixed simulator -->
+  <div class="simulator"></div>
+
+  <!-- the scrolling sections -->
+  <section id="hash">
+    <div class="text">
+      <h2>01 Hash</h2>
+      <p>
+        A hash is the fixed-length fingerprint of any input data, produced by a
+        one-way cryptographic function (e.g. SHA-256). Even a tiny change yields
+        a completely different output.
+      </p>
+    </div>
+    <iframe src="hash_simulation.html"
+            width="600"
+            height="300"
+            title="SHA-256 Simulator">
+    </iframe>
+  </section>
+
+  <section id="block">
+    <div class="text">
+      <h2>02 Block</h2>
+      <p>
+        A block bundles a batch of validated transactions (or data), plus the
+        previous block’s hash, timestamp, and a nonce miners adjust to satisfy
+        proof-of-work.
+      </p>
+    </div>
+    <iframe src="block_simulation.html"
+            width="600"
+            height="300"
+            title="Block Simulator">
+    </iframe>
+  </section>
+
+  <section id="chain">
+    <div class="text">
+      <h2>03 Blockchain</h2>
+      <p>
+        The blockchain is the ordered, tamper-evident chain of blocks, each
+        referencing its predecessor—making earlier blocks immutable.
+      </p>
+    </div>
+    <iframe src="blockchain_simulation.html"
+            width="600"
+            height="300"
+            title="Blockchain Simulator">
+    </iframe>
+  </section>
+
+  <section id="network">
+    <div class="text">
+      <h2>04 Network</h2>
+      <p>
+        A distributed network is a set of independent nodes that each store
+        and verify a copy of the blockchain, maintaining consensus without a
+        central authority.
+      </p>
+    </div>
+    <iframe src="network_simulation.html"
+            width="600"
+            height="300"
+            title="Network Simulator">
+    </iframe>
+  </section>
+
+  <section id="tokens">
+    <div class="text">
+      <h2>05 Tokens</h2>
+      <p>
+        A token is a digital unit of value tracked on-chain (via UTXOs or
+        balances). Transactions consume old outputs and create new ones so coins
+        can’t be double-spent.
+      </p>
+    </div>
+    <iframe src="token_simulator.html"
+            width="600"
+            height="300"
+            title="Token Simulator">
+    </iframe>
+  </section>
+
+  <section id="coinbase">
+    <div class="text">
+      <h2>06 Coinbase</h2>
+      <p>
+        The coinbase transaction is the first in every block, minting new coins
+        to reward the miner. It has no ordinary inputs—just protocol-defined issuance.
+      </p>
+    </div>
+    <iframe src="coinbase_simulator.html"
+            width="600"
+            height="300"
+            title="Coinbase Simulator">
+    </iframe>
+  </section>
+
+  <!-- fixed right-bar nav -->
+  <aside>
+    <nav>
+      <ul>
+        <li class="bar" data-target="hash"    aria-label="Hash"></li>
+        <li class="bar" data-target="block"   aria-label="Block"></li>
+        <li class="bar" data-target="chain"   aria-label="Blockchain"></li>
+        <li class="bar" data-target="network" aria-label="Network"></li>
+        <li class="bar" data-target="tokens"  aria-label="Tokens"></li>
+        <li class="bar" data-target="coinbase"aria-label="Coinbase"></li>
+      </ul>
+    </nav>
+  </aside>
+</div>
+
+<script>
+  // Observe when each section crosses the halfway mark
+  const opts = { root: null, threshold: 0.5 };
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      const id = e.target.id;
+      const bar = document.querySelector(`.bar[data-target="${id}"]`);
+      if (e.isIntersecting) {
+        e.target.classList.add('active');
+        bar.classList.add('active');
+      } else {
+        e.target.classList.remove('active');
+        bar.classList.remove('active');
+      }
+    });
+  }, opts);
+
+  document.querySelectorAll('section').forEach(s => obs.observe(s));
+
+  // clicking a bar scrolls you to its section
+  document.querySelectorAll('.bar').forEach(bar =>
+          bar.addEventListener('click', () => {
+            document
+                    .getElementById(bar.dataset.target)
+                    .scrollIntoView({ behavior: 'smooth' });
+          })
+  );
+</script>
+</body>
+</html>

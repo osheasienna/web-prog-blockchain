@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spinning Bitcoin (Metallic Responsive Light)</title>
+  <style>
+    /*---------------------------------
+      metallic vars for bitcoin
+    ---------------------------------*/
+    .bitcoin {
+      --face-light:  #ffebc2;
+      --face-dark:   #d4a743;
+      --sign:        #c49a44;
+      --circle:      #c49a44;
+      --rim-light:   #f3d47e;
+      --rim-dark:    #a57f24;
+    }
+
+    /*---------------------------------
+      reset & layout
+    ---------------------------------*/
+    * { box-sizing: border-box; margin:0; padding:0 }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #222;
+    }
+    .container {
+      width: 10em;
+      height: 10em;
+      perspective: 400px;
+      box-shadow: 0 .8em 1.5em rgba(0,0,0,0.6);
+    }
+
+    /*---------------------------------
+      coin base & animation
+    ---------------------------------*/
+    .coin {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: spinBitcoin 6s linear infinite;
+    }
+    @keyframes spinBitcoin {
+      from { transform: rotateX(0) rotateY(0) }
+      to   { transform: rotateX(360deg) rotateY(360deg) }
+    }
+
+    /*---------------------------------
+      front/back faces (metallic gradient)
+    ---------------------------------*/
+    .face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      backface-visibility: hidden;
+      background: radial-gradient(
+              circle at 30% 30%,
+              var(--face-light),
+              var(--face-dark)
+      );
+      box-shadow: inset 0 .2em .5em rgba(0,0,0,0.3);
+    }
+    /* dynamic shine that cancels parent rotation */
+    .face::before {
+      content: "";
+      position: absolute;
+      top: 15%; left: 25%;
+      width: 50%; height: 20%;
+      background: rgba(255,255,255,0.6);
+      border-radius: 50%;
+      filter: blur(.6em);
+      transform-origin: center;
+      animation: shineFix 6s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes shineFix {
+      from { transform: rotateX(0deg) rotateY(0deg) rotate(-30deg); }
+      to   { transform: rotateX(-360deg) rotateY(-360deg) rotate(-30deg); }
+    }
+    .front { transform: translateZ(0.4em); }
+    .back  { transform: rotateY(180deg) translateZ(0.4em); }
+
+    /*---------------------------------
+      big ₿ symbol + circle detail
+    ---------------------------------*/
+    .symbol {
+      position: absolute;
+      top:50%; left:50%;
+      transform: translate(-50%,-50%);
+      font-family: Arial, sans-serif;
+      font-size: 5em;
+      font-weight: bold;
+      color: var(--sign);
+    }
+    .circle {
+      position: absolute;
+      top:50%; left:50%;
+      transform: translate(-50%,-50%);
+      width: 8em; height: 8em;
+      border: .35em dashed var(--circle);
+      border-radius: 50%;
+    }
+
+    /*---------------------------------
+      metallic rim slices
+    ---------------------------------*/
+    .side {
+      --r: 5em;
+      position: absolute;
+      top:50%; left:50%;
+      width: .8em; height:1.61em;
+      background: linear-gradient(
+              to right,
+              var(--rim-light),
+              var(--rim-dark)
+      );
+      border-top:    .15em solid rgba(255,255,255,0.5);
+      border-bottom: .15em solid rgba(0,0,0,0.5);
+      transform-style: preserve-3d;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="coin bitcoin">
+    <div class="face front">
+      <div class="symbol">₿</div>
+      <div class="circle"></div>
+    </div>
+    <div class="face back">
+      <div class="symbol">₿</div>
+      <div class="circle"></div>
+    </div>
+    <!-- 20 .side figures will be injected here -->
+  </div>
+</div>
+
+<script>
+  // generate the 20 slices around the edge
+  const coin = document.querySelector('.coin.bitcoin');
+  const count = 20;
+  for(let i=0; i<count; i++){
+    const fig = document.createElement('figure');
+    fig.className = 'side';
+    fig.style.transform = `
+      translate3d(-50%,-50%,0)
+      rotateY(90deg)
+      rotateX(${i * (360/count)}deg)
+      translateZ(calc(var(--r) - 0.1em))
+    `;
+    coin.appendChild(fig);
+  }
+</script>
+
+</body>
+</html>
