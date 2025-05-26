@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Proof-of-Work Miner</title>
+  <!-- SHA-256 library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+  <style>
+    body { font-family: sans-serif; background: #f5f5f5; }
+    .container {
+      max-width: 800px; margin: 40px auto; padding: 20px;
+      border-radius: 6px; transition: background 0.3s;
+    }
+    .valid   { background: #dff0d8; }
+    .invalid { background: #f2dede; }
+    .form-group { margin-bottom: 1em; }
+    label { display: block; font-weight: bold; margin-bottom: 0.3em; }
+    input[type="number"],
+    input[type="text"],
+    textarea {
+      width: 100%; padding: 0.6em; border: 1px solid #ccc;
+      border-radius: 4px; box-sizing: border-box;
+    }
+    input[readonly] { background: #eee; }
+    button {
+      padding: 0.6em 1.2em; border: none; border-radius: 4px;
+      background: #337ab7; color: white; font-size: 1em;
+      cursor: pointer;
+    }
+    button:hover { background: #286090; }
+  </style>
+</head>
+<body>
+
+<div id="miner" class="container valid">
+  <div class="form-group">
+    <label for="block">Block:</label>
+    <input type="number" id="block" value="1">
+  </div>
+  <div class="form-group">
+    <label for="nonce">Nonce:</label>
+    <input type="number" id="nonce" value="0">
+  </div>
+  <div class="form-group">
+    <label for="data">Data:</label>
+    <textarea id="data" rows="5"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="hash">Hash:</label>
+    <input type="text" id="hash" readonly>
+  </div>
+  <button id="mine">Mine</button>
+</div>
+
+<script>
+  const blockInput = document.getElementById('block');
+  const nonceInput = document.getElementById('nonce');
+  const dataInput  = document.getElementById('data');
+  const hashInput  = document.getElementById('hash');
+  const minerDiv   = document.getElementById('miner');
+  const mineBtn    = document.getElementById('mine');
+
+  function updateHash() {
+    const block = blockInput.value;
+    const nonce = nonceInput.value;
+    const data  = dataInput.value;
+    const hash  = sha256(block + nonce + data);
+    hashInput.value = hash;
+
+    // toggle background
+    if (hash.startsWith('0000')) {
+      minerDiv.classList.remove('invalid');
+      minerDiv.classList.add('valid');
+    } else {
+      minerDiv.classList.remove('valid');
+      minerDiv.classList.add('invalid');
+    }
+  }
+
+  // recalc on any change
+  [blockInput, nonceInput, dataInput].forEach(el =>
+          el.addEventListener('input', updateHash)
+  );
+
+  // mine button
+  mineBtn.addEventListener('click', () => {
+    let nonce = parseInt(nonceInput.value, 10) || 0;
+    const block = blockInput.value;
+    const data  = dataInput.value;
+    let hash;
+
+    // brute-force until hash starts with 0000
+    while (true) {
+      hash = sha256(block + nonce + data);
+      if (hash.startsWith('0000')) break;
+      nonce++;
+    }
+
+    nonceInput.value = nonce;
+    hashInput.value  = hash;
+    minerDiv.classList.remove('invalid');
+    minerDiv.classList.add('valid');
+  });
+
+  // initial calculation
+  updateHash();
+</script>
+
+</body>
+</html>
