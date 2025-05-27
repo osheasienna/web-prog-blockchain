@@ -155,7 +155,6 @@ nav a {
   width: 20em;
   height: 20em;
   perspective: 400px;
-  box-shadow: 0 .8em 1.5em rgba(0,0,0,0.6);
 }
 
 .coin {

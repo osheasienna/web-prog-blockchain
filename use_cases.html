@@ -13,31 +13,19 @@
     .content { position:relative; width:100vw; height:calc(100vh - 80px); display:flex; flex-direction:column; align-items:center; justify-content:center; }
     .usecase-name { font-size:40px; margin-bottom:10px; transition:opacity .4s; }
     .usecase-description { font-size:16px; max-width:600px; margin-bottom:30px; transition:opacity .4s; line-height:1.4; }
-    .orbit-container {
-      position:relative;
-      width:600px;
-      height:600px;
-      transition: transform 0.6s linear;
-    }
+    .orbit-container { position:relative; width:600px; height:600px; transition:transform 1s; }
+    .orbit-container.spin { animation:orbit-spin 1s linear; }
+    @keyframes orbit-spin { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
     .orbit-ring { position:absolute; top:50%; left:50%; border:1px solid rgba(255,255,255,0.1); border-radius:50%; transform:translate(-50%,-50%); }
     .orbit-ring:nth-child(1){width:550px;height:550px;}
     .orbit-ring:nth-child(2){width:450px;height:450px;}
     .orbit-ring:nth-child(3){width:350px;height:350px;}
     .orbit-ring:nth-child(4){width:250px;height:250px;}
     .orbit-ring:nth-child(5){width:200px;height:200px;}
-    .dot { position:absolute; width:48px; height:48px; border-radius:50%; background-size:cover; background-position:center; cursor:pointer; transition: transform .3s, left .6s ease, top .6s ease; border:2px solid rgba(255,255,255,0.2); z-index:3; }
+    .dot { position:absolute; width:48px; height:48px; border-radius:50%; background-size:cover; background-position:center; cursor:pointer; transition:transform .3s, left .6s ease, top .6s ease; border:2px solid rgba(255,255,255,0.2); }
     .dot:hover { transform:scale(1.2); }
-    .main-img { position:absolute; top:50%; left:50%; width:200px; height:200px; border-radius:50%; overflow:hidden; transform:translate(-50%,-50%); box-shadow:0 0 60px rgba(255,255,255,0.2); transition:opacity .4s; z-index:1; }
+    .main-img { position:absolute; top:50%; left:50%; width:200px; height:200px; border-radius:50%; overflow:hidden; transform:translate(-50%,-50%); box-shadow:0 0 60px rgba(255,255,255,0.2); transition:opacity .4s; }
     .main-img img { width:100%; height:100%; object-fit:cover; }
-
-    /* Main icon spin animation */
-    .main-img.spin {
-      animation: main-spin 0.6s ease;
-    }
-    @keyframes main-spin {
-      0% { transform:translate(-50%,-50%) rotate(0deg); }
-      100% { transform:translate(-50%,-50%) rotate(360deg); }
-    }
   </style>
 </head>
 <body>
@@ -74,7 +62,6 @@
 </div>
 
 <script>
-  let rotationAngle = 0;
   let useCases = [
     { name:'Decentralised Finance',    desc:'Peer-to-peer financial services...', file:'transfer.png', orbitIdx:1 },
     { name:'Digital Identity',         desc:'Self-sovereign identity...',      file:'identity.png', orbitIdx:2 },
@@ -86,8 +73,7 @@
   const orbit = document.getElementById('orbitContainer');
   const nameEl = document.getElementById('usecaseName');
   const descEl = document.getElementById('usecaseDesc');
-  const mainImgContainer = document.getElementById('mainImg');
-  const mainImg = mainImgContainer.querySelector('img');
+  const mainImg = document.querySelector('#mainImg img');
   const dots = useCases.map((_, i) => document.getElementById('dot'+i));
 
   function positionDots() {
@@ -96,8 +82,8 @@
       const u = useCases[i];
       const angle = (i/total)*2*Math.PI;
       const r = radii[u.orbitIdx-1];
-      dot.style.left = `${300 + r*Math.cos(angle) - 24}px`;
-      dot.style.top  = `${300 + r*Math.sin(angle) - 24}px`;
+      dot.style.left = `${300 + r*Math.cos(angle) -24}px`;
+      dot.style.top  = `${300 + r*Math.sin(angle) -24}px`;
       dot.style.backgroundImage = `url('./assets/${u.file}')`;
     });
   }
@@ -105,15 +91,10 @@
   dots.forEach((dot, i) => dot.addEventListener('click', () => selectUseCase(i)));
 
   function selectUseCase(idx) {
-    // quarter-turn rotation
-    rotationAngle = (rotationAngle + 90) % 360;
-    orbit.style.transform = `rotate(${rotationAngle}deg)`;
+    orbit.classList.add('spin');
+    setTimeout(() => orbit.classList.remove('spin'), 1000);
 
-    // animate main icon spin
-    mainImgContainer.classList.add('spin');
-    setTimeout(() => mainImgContainer.classList.remove('spin'), 600);
-
-    // fade central content
+    // show selected in center
     nameEl.style.opacity = descEl.style.opacity = mainImg.style.opacity = 0;
     setTimeout(() => {
       const u = useCases[idx];
@@ -122,14 +103,15 @@
       mainImg.src = `./assets/${u.file}`;
       mainImg.alt = u.name;
       nameEl.style.opacity = descEl.style.opacity = mainImg.style.opacity = 1;
-      // reorder and reposition
+      // reorder useCases so that clicked moves to front
       useCases.unshift(useCases.splice(idx,1)[0]);
+      // update orbitIdx cycling inward
       useCases = useCases.map((uc, i) => ({ ...uc, orbitIdx: (i%5)+1 }));
       positionDots();
     }, 400);
   }
 
-  // initial positions
+  // initial layout
   positionDots();
 </script>
 </body>
