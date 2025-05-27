@@ -12,40 +12,45 @@
 <header>
   <div class="logo">My Little Blockain</div>
   <nav>
-    <a href="simulation.html">Simulation</a>
-    <a href="use_cases.html">Use Cases</a>
-    <a href="#">Quiz</a>
-    <a href="#" class="mint-now">Mint Now</a>
   </nav>
 </header>
 
 <main class="hero">
-  <div class="left">
-    <h1>
-      LEARN<br>ABOUT<br>THE<br>WORLD
-    </h1>
-    <p>Explore the architecture of trustless systems and digital ledgers.</p>
-  </div>
-  <div class="right">
-    <h1> <span class="nft">of</span><br>  <a href="blockchain.html" class="cta">BLOCKCHAIN</a></h1>
+  <!-- Learn About behind coin -->
+  <div class="text-behind">
+    <a href='simulation.html' class='cta big-word'>LEARN</a>
+    <span class='big-word'>ABOUT</span>
   </div>
 
-  <div class="right">
-    <div class="container">
-      <div class="coin bitcoin">
-        <div class="face front">
-          <div class="symbol">₿</div>
-          <div class="circle"></div>
-        </div>
-        <div class="face back">
-          <div class="symbol">₿</div>
-          <div class="circle"></div>
-        </div>
-        <!-- JS will inject the 20 .side slices -->
+  <!-- Coin in center -->
+  <div class="container">
+    <div class="coin bitcoin">
+      <div class="face front">
+        <div class="symbol">₿</div>
+        <div class="circle"></div>
+      </div>
+      <div class="face back">
+        <div class="symbol">₿</div>
+        <div class="circle"></div>
       </div>
     </div>
   </div>
+
+  <!-- "The" on left of coin -->
+  <div class="text-left">THE</div>
+
+  <!-- "World" on right of coin -->
+  <div class="text-right">
+    <a href='usecase.html' class='cta'>WORLD</a>
+  </div>
+
+  <!-- "of Blockchain" below the coin -->
+  <div class="text-below">
+    <span class="nft">of</span>
+    <a href="blockchain.html" class="cta">BLOCKCHAIN</a>
+  </div>
 </main>
+
 <script src="home.js"></script>
 </body>
 </html>
