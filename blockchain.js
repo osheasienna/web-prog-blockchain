@@ -103,14 +103,14 @@ const quizData = [
     answer: 2
   },
   {
-    question: "Which one is NOT a cryptocurrency?",
+    question: "Which of the following statements correctly describes the difference between a private key and a public key?",
     options: [
-      "Ethereum",
-      "Bitcoin",
-      "Smart Contract",
-      "Litecoin"
+      "A private key is shared publicly to encrypt messages, while a public key is kept secret to decrypt them",
+      "A private key is kept secret and used to sign transactions, while a public key is shared openly to verify those signatures",
+      "Both private and public keys are kept secret to secure a wallet",
+      "A public key is used to sign transactions, and the private key is shared with others"
     ],
-    answer: 2
+    answer: 1
   }
 ];
 

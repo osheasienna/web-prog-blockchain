@@ -86,9 +86,9 @@ html {
     align-items: center;
     flex-wrap: nowrap;
     opacity: 0;
-    transform: translateY(100px);
+    transform: translateY(20px);
     transition: opacity 1s ease-out, transform 0.4s ease-out;
-    z-index: 2;
+    z-index: 0;
   }
   
   section.active .text {
