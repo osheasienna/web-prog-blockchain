@@ -57,8 +57,21 @@ nav a {
 }
 
 .left h1 {
-  font-size: 5rem;
+  font-size: 7rem;
   line-height: 1.1;
+}
+
+.right h1{
+  font-size: 7rem;
+  text-align: right;
+  margin-right: 3rem;
+  margin-top:2rem;
+  color: pink;
+  text-shadow: 
+    0 0 5px #fff, 
+    0 0 10px #ff00ff, 
+    0 0 20px #ff00ff, 
+    0 0 40px #ff00ff;
 }
 
 .left .nft {
@@ -72,19 +85,7 @@ nav a {
   max-width: 25rem;
 }
 
-.cta {
-  display: inline-block;
-  text-decoration: none;
-  background: #ff9f1c;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  color: #0d0d0d;
-  margin-top: 1rem;
-}
 
-.cta:hover {
-  background: #ffb74e;
-}
 
 /*---------------------------------
   Quiz Form (if used)
