@@ -252,3 +252,47 @@
     user-select: none;
   }
   
+  .card h3 {
+    font-size: 1.75rem; /* increase heading size */
+    margin-bottom: 0.5rem;
+  }
+  
+  .card p {
+    font-size: 1.2rem; /* increase paragraph size */
+    line-height: 1.4;
+  }
+  
+
+  .card {
+    background: #302e4d;
+    border-radius: 1rem;
+    width: 300px;
+    height: 300px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 6px 12px rgba(87, 67, 198, 0.3);
+    color: #fef6e4;
+    user-select: none;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    flex-shrink: 0;
+  
+    /* Center content vertically and horizontally */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  
+    border: none;
+  }
+  
+  .card h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card p {
+    font-size: 1.2rem;
+    line-height: 1.4;
+  }
+  
