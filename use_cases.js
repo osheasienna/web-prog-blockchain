@@ -130,6 +130,6 @@ function selectUseCase(idx) {
     nameEl.style.opacity = descEl.style.opacity = mainImg.style.opacity = 1;
 
     // rotate array so next click stays in sync
-    useCases.unshift(useCases.splice(idx, 1)[0]);
+   // useCases.unshift(useCases.splice(idx, 1)[0]);
   }, 400);
 }
