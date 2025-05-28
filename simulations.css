@@ -61,8 +61,8 @@ html {
     display: block;
     width: 100%;
     height: 100%;
-    border: none;
-    border-radius: inherit;
+    border: none ;
+    border-radius: 0.5rem;
   }
   
   /*---------------------------------

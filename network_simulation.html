@@ -7,6 +7,7 @@
         body {
             font-family: sans-serif;
             margin: 20px;
+            background: #ff9f1c;
         }
         .peer {
             margin-bottom: 40px;
@@ -20,7 +21,18 @@
             overflow-x: auto;
         }
         .block {
-            flex: 0 0 220px;
+            /* set the “base” width to 300px */
+            flex: 0 0 280px;
+                /* prevent it from growing past 300px */
+            max-width: 280px;
+
+                /* keep the rest of your styles */
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            padding: 10px;
+            box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+            background: #fafafa;
+            transition: background 0.3s, border-color 0.3s;
             border: 2px solid #ccc;
             border-radius: 6px;
             padding: 10px;
