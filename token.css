@@ -1,7 +1,8 @@
-/* styles.css */
+/* token.css */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background: #ff9f1c;
 }
 
 header {
@@ -30,23 +31,36 @@ header nav ul li a:hover {
 
 #peers {
     display: flex;
+    flex-direction: column;   /* stack each peer vertically */
     gap: 1em;
     padding: 1em;
+    overflow-y: auto;        /* allow vertical scrolling if needed */
 }
 
 .peer {
-    flex: 1;
+    display: flex;
+    flex-wrap: nowrap;       /* keep all blocks on one line */
+    gap: 1em;
     border: 1px solid #ccc;
     padding: 1em;
     box-sizing: border-box;
     background: #e8f5e9;
+    align-self: flex-start;   /* let container shrink-fit to blocks */
+    width: max-content;       /* expand to cover all blocks */
+}
+
+.peer h2 {
+    flex-basis: 100%;
+    margin: 0 0 0.5em;
 }
 
 .token-block {
     border: 1px solid #999;
     padding: 0.5em;
-    margin-bottom: 1em;
+    margin: 0;
     background: #fafafa;
+    flex: 1 1 auto;
+    box-sizing: border-box;
 }
 .token-block .block-header {
     font-weight: bold;
@@ -80,39 +94,38 @@ button.ladda-button {
 
 /* —— your existing styles above —— */
 
-.tx-wrap {
+tx-wrap {
     margin-bottom: 0.75em;
-    /* allow horizontal scroll on very narrow screens */
     overflow-x: auto;
 }
 
-.tx-wrap label {
+tx-wrap label {
     display: inline-block;
     vertical-align: top;
     width: 60px;
     font-weight: bold;
-    padding-top: 8px; /* align with first row of inputs */
+    padding-top: 8px;
 }
 
-.tx-table {
+tx-table {
     display: inline-block;
     width: calc(100% - 60px);
     border-collapse: collapse;
 }
 
-.tx-table th,
-.tx-table td {
+tx-table th,
+tx-table td {
     border: 1px solid #ccc;
     padding: 0.25em 0.5em;
 }
 
-.tx-table th {
+tx-table th {
     background: #eee;
     text-align: left;
     font-weight: normal;
 }
 
-.tx-table td input {
+tx-table td input {
     width: 100%;
     box-sizing: border-box;
     padding: 0.25em;
@@ -121,8 +134,17 @@ button.ladda-button {
     font-family: inherit;
 }
 
-.tx-table td.arrow {
+tx-table td.arrow {
     text-align: center;
     width: 2em;
     background: #fafafa;
 }
+.peer.mismatch {
+    border-color: red;
+    background: #fdecea; /* light red */
+}
+.peer.match {
+    border-color: green;
+    background: #e8f5e9; /* original green */
+}
+
