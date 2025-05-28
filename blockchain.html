@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Blockchain Animation</title>
+  <title>Blockchain Information</title>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="blockchain.css" />
 </head>
@@ -27,6 +27,7 @@
 
   <h2> Key Terms </h2>
 
+  <!-- Card carousel -->
   <div class="carousel-container" id="carousel">
     <div class="card" data-term="Blockchain" data-definition="A distributed, append-only ledger maintained by a peer-to-peer network, where transactions are grouped into cryptographically linked blocks, ensuring data integrity, transparency, and immutability without relying on a central authority.">
       <h3>Blockchain</h3>
@@ -48,15 +49,15 @@
       <h3>Hash</h3>
       <p class="definition"></p>
     </div>
-    <div class="card" data-term="Hash" data-definition="A secret alphanumeric code that allows the owner to access and control their cryptocurrency funds by enabling the signing of transactions. It must be kept confidential to ensure security and prevent unauthorized access.">
+    <div class="card" data-term="Private key" data-definition="A secret alphanumeric code that allows the owner to access and control their cryptocurrency funds by enabling the signing of transactions. It must be kept confidential to ensure security and prevent unauthorized access.">
       <h3>Private key</h3>
       <p class="definition"></p>
     </div>
-    <div class="card" data-term="Hash" data-definition="A cryptographic code shared openly to enable others to encrypt data or verify digital signatures, linked to a corresponding private key for secure communication.">
+    <div class="card" data-term="Public key" data-definition="A cryptographic code shared openly to enable others to encrypt data or verify digital signatures, linked to a corresponding private key for secure communication.">
       <h3>Public key</h3>
       <p class="definition"></p>
     </div>
-    <div class="card" data-term="Hash" data-definition="A network is a distributed system of nodes that collectively validate, store, and synchronize a decentralized ledger, enabling trustless and secure data exchange without a central authority.">
+    <div class="card" data-term="Network" data-definition="A network is a distributed system of nodes that collectively validate, store, and synchronize a decentralized ledger, enabling trustless and secure data exchange without a central authority.">
       <h3>Network</h3>
       <p class="definition"></p>
       </div>
@@ -64,7 +65,7 @@
       <h3>Token</h3>
       <p class="definition"></p>
     </div>
-    <div class="card" data-term="Hash" data-definition="The coinbase is the first transaction in a block, created by the miner to collect the block reward and any transaction fees—effectively issuing new cryptocurrency and compensating the miner.">
+    <div class="card" data-term="Coinbase" data-definition="The coinbase is the first transaction in a block, created by the miner to collect the block reward and any transaction fees—effectively issuing new cryptocurrency and compensating the miner.">
       <h3>Coinbase</h3>
       <p class="definition"></p>
     </div>
@@ -73,11 +74,11 @@
   <!-- Quiz Button -->
 <button id="openQuizBtn" class="quiz-button">Take the Quiz</button>
 
-<!-- Modal Quiz Widget -->
+<!-- Quiz Widget -->
 <div id="quizModal" class="quiz-modal">
   <div class="quiz-content">
     <span id="closeQuizBtn" class="close-btn">&times;</span>
-    <h2>Blockchain Basics Quiz</h2>
+    <h2>Blockchain Quiz</h2>
     <div id="quizContainer"></div>
     <button id="submitQuizBtn" class="submit-btn">Submit</button>
     <div id="quizResult" class="quiz-result"></div>
