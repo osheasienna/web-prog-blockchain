@@ -89,6 +89,7 @@ html {
     transform: translateY(20px);
     transition: opacity 1s ease-out, transform 0.4s ease-out;
     z-index: 0;
+    margin-top: 3em;
   }
   
   section.active .text {
@@ -122,6 +123,7 @@ html {
     top: 50%;
     right: 2rem;
     transform: translateY(-50%);
+
   }
   
   aside nav ul {
@@ -129,18 +131,24 @@ html {
     margin: 0;
     padding: 0;
   }
-  
-  nav li.bar {
-    width: 2px;
-    height: 60px;
-    background: #fef6e4;
-    margin: 1rem 0;
-    transition: width 0.2s, background 0.3s;
-    cursor: pointer;
-  }
-  
-  nav li.bar.active {
-    width: 8px;
-    background: #ff9f1c;
-  }
+
+nav li.bar {
+  width: 2px;
+  height: 60px;
+  background: #fef6e4;
+  margin: 1rem 0;
+  transition: width 0.2s, background 0.3s;
+  cursor: pointer;
+
+  /* add this: */
+  border-radius: 1px;    /* small rounding for the 2px bar */
+}
+
+nav li.bar.active {
+  width: 8px;
+  background: #ff9f1c;
+
+  /* match rounding to half the width for a pill shape */
+  border-radius: 4px;
+}
   

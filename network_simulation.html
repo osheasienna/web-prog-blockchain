@@ -4,77 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
         body {
             font-family: sans-serif;
-            margin: 20px;
             background: #ff9f1c;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .peer {
             margin-bottom: 40px;
         }
         .peer h3 {
             margin-bottom: 10px;
+            font-weight: bold;
         }
         .blocks {
             display: flex;
-            gap: 12px;
-            overflow-x: auto;
+            gap: 20px;
+            height: auto;
         }
         .block {
-            /* set the “base” width to 300px */
             flex: 0 0 280px;
-                /* prevent it from growing past 300px */
             max-width: 280px;
-
-                /* keep the rest of your styles */
-            border: 2px solid #ccc;
-            border-radius: 6px;
-            padding: 10px;
-            box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
-            background: #fafafa;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #ffdce0;
+            border-radius: 8px;
+            padding: 20px;
+            box-sizing: border-box;
             transition: background 0.3s, border-color 0.3s;
-            border: 2px solid #ccc;
-            border-radius: 6px;
-            padding: 10px;
-            box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
-            background: #fafafa;
-            transition: background 0.3s, border-color 0.3s;
-        }
-        .block.valid {
-            background: #e6ffe6;
-            border-color: #3c8031;
         }
         .block.invalid {
-            background: #ffe6e6;
-            border-color: #803131;
+            background: #f8d7da;
+        }
+        .block.valid {
+            background: #d4edda;
         }
         .block label {
             display: block;
-            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 4px;
             margin-top: 8px;
         }
-        .block input[type="number"],
-        .block input[type="text"],
+        .block input,
         .block textarea {
             width: 100%;
+            padding: 8px;
             box-sizing: border-box;
-            margin-top: 4px;
-            padding: 4px;
-            font-size: 0.9em;
+            font-family: monospace;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
         .block textarea {
+            flex: 1;
             resize: vertical;
-            height: 40px;
+            margin-bottom: 15px;
         }
         .block .hash {
             background: #eee;
         }
         .block button.mine {
-            margin-top: 10px;
-            width: 100%;
-            padding: 6px;
-            font-size: 0.9em;
+            align-self: flex-start;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            font-size: 1em;
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
             cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .block button.mine:hover {
+            background-color: #0056b3;
         }
     </style>
     <!-- CryptoJS for SHA-256 -->
@@ -88,7 +95,6 @@
     const difficulty   = 4;
     const targetPrefix = '0'.repeat(difficulty);
 
-    // only 4 blocks now
     const initial = [
         { block: 1, nonce: 11316, previous: '0'.repeat(64) },
         { block: 2, nonce: 35230, previous: '000015783b764259d382017d91a36d206d0600e2cbb3567748f46a33fe9297cf' },
@@ -97,7 +103,6 @@
     ];
     const peers = ['A','B','C'];
 
-    // build the three peer rows
     const sim = document.getElementById('simulator');
     peers.forEach(peerId => {
         const peerDiv = document.createElement('div');
@@ -109,11 +114,16 @@
             el.className = 'block';
             el.dataset.block = cfg.block;
             el.innerHTML = `
-          <label># <input type="number" class="number" value="${cfg.block}" readonly></label>
-          <label>Nonce <input type="text" class="nonce" value="${cfg.nonce}"></label>
-          <label>Data <textarea class="data"></textarea></label>
-          <label>Prev <input type="text" class="previous" value="${cfg.previous}"></label>
-          <label>Hash <input type="text" class="hash" readonly></label>
+          <label>Block:</label>
+          <input type="number" class="number" value="${cfg.block}" readonly>
+          <label>Nonce:</label>
+          <input type="text" class="nonce" value="${cfg.nonce}">
+          <label>Data:</label>
+          <textarea class="data"></textarea>
+          <label>Prev:</label>
+          <input type="text" class="previous" value="${cfg.previous}" readonly>
+          <label>Hash:</label>
+          <input type="text" class="hash" readonly>
           <button class="mine">Mine</button>
         `;
             row.appendChild(el);
@@ -121,12 +131,10 @@
         sim.appendChild(peerDiv);
     });
 
-    // SHA-256 helper
     function computeHash(text) {
         return CryptoJS.SHA256(text).toString();
     }
 
-    // recompute hash, set validity colour
     function updateBlockHash(el) {
         const num   = el.querySelector('.number').value;
         const nonce = el.querySelector('.nonce').value;
@@ -143,7 +151,6 @@
         }
     }
 
-    // mirror a block's nonce/data/prev+hash to all peers
     function propagate(el) {
         const idx      = el.dataset.block;
         const nonce    = el.querySelector('.nonce').value;
@@ -160,7 +167,6 @@
             });
     }
 
-    // walk the chain: set each block's prev to the hash of the one before it, then propagate
     function updateChain() {
         const max = initial.length;
         const firstPeer = document.querySelector('.peer');
@@ -174,7 +180,6 @@
         }
     }
 
-    // wire up events on every block
     document.querySelectorAll('.block').forEach(blockEl => {
         ['nonce','data','previous'].forEach(cls => {
             blockEl.querySelector(`.${cls}`)
@@ -200,9 +205,9 @@
         });
     });
 
-    // initial hashes + chain fix
     document.querySelectorAll('.block').forEach(updateBlockHash);
     updateChain();
 </script>
+
 </body>
 </html>
