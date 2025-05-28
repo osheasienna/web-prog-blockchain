@@ -28,39 +28,51 @@ header nav ul li a.active,
 header nav ul li a:hover {
     color: #fff;
 }
-
 #peers {
     display: flex;
-    flex-direction: column;   /* stack each peer vertically */
+    flex-direction: column;
     gap: 1em;
     padding: 1em;
-    overflow-y: auto;        /* allow vertical scrolling if needed */
+    overflow-y: auto;
 }
 
+/* Each peer */
 .peer {
     display: flex;
-    flex-wrap: nowrap;       /* keep all blocks on one line */
+    flex-wrap: nowrap;
     gap: 1em;
-    border: 1px solid #ccc;
     padding: 1em;
     box-sizing: border-box;
-    background: #e8f5e9;
     align-self: flex-start;   /* let container shrink-fit to blocks */
     width: max-content;      
 }
+.peer.match   { background: #d4edda; }
+.peer.mismatch{ background: #f8d7da; }
 
+/* Peer title spans full width */
 .peer h2 {
     flex-basis: 100%;
-    margin: 0 0 0.5em;
+    margin: 0 0 5em;
+    font-weight: bold;
 }
 
+/* Block card styling */
 .token-block {
-    border: 1px solid #999;
-    padding: 0.5em;
-    margin: 0;
-    background: #fafafa;
-    flex: 1 1 auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #ffdce0;
+    border-radius: 8px;
+    padding: 20px;
     box-sizing: border-box;
+    transition: background 0.3s;
+}
+.token-block.match {
+    background: #d4edda;
+}
+.token-block.mismatch {
+    background: #f8d7da;
 }
 .token-block .block-header {
     font-weight: bold;
@@ -88,9 +100,24 @@ header nav ul li a:hover {
     color: green;
 }
 
+/* Mine button */
 button.ladda-button {
-    margin-top: 0.5em;
+    align-self: flex-start;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    font-size: 1em;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 8px;
 }
+button.ladda-button:hover {
+    background-color: #0056b3;
+}
+
 
 tx-wrap {
     margin-bottom: 0.75em;

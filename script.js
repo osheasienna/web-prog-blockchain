@@ -1,4 +1,5 @@
 // Utility: convert ArrayBuffer to hex string
+// Consulted AI on the functionality of the Hash and how it encrypts
 function bufferToHex(buffer) {
     const hexCodes = [];
     const view = new DataView(buffer);

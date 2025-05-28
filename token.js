@@ -1,4 +1,3 @@
-// token.js
 $(function() {
     const NUM_CHAINS  = 3;                // Peers A, B, C
     const NUM_BLOCKS  = 3;               // 3 blocks per peer
@@ -124,7 +123,7 @@ $(function() {
             });
             tx++;
         }
-        // On mine
+        // On mine -- consulted AI for the functionality
         $(`${base}mineButton`).on('click', function(e) {
             e.preventDefault();
             const spinner = Ladda.create(this);

@@ -6,6 +6,7 @@
     entries.forEach(e => {
       const id = e.target.id;
       const bar = document.querySelector(`.bar[data-target="${id}"]`);
+      // consulted AI regarding .isIntersecting
       if (e.isIntersecting) {
         e.target.classList.add('active');
         bar.classList.add('active');
