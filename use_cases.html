@@ -1,118 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Blockchain Use Cases</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Segoe UI', sans-serif; background:radial-gradient(circle at top,#0b0f2e,#000); color:#fff; overflow:hidden; }
-    header { display:flex; justify-content:space-between; align-items:center; padding:20px 50px; }
-    .nav-left, .nav-right { display:flex; gap:30px; font-size:14px; }
-    .logo { position:absolute; left:50%; top:20px; transform:translateX(-50%); font-size:18px; }
-    .content { position:relative; width:100vw; height:calc(100vh - 80px); display:flex; flex-direction:column; align-items:center; justify-content:center; }
-    .usecase-name { font-size:40px; margin-bottom:10px; transition:opacity .4s; }
-    .usecase-description { font-size:16px; max-width:600px; margin-bottom:30px; transition:opacity .4s; line-height:1.4; }
-    .orbit-container { position:relative; width:600px; height:600px; transition:transform 1s; }
-    .orbit-container.spin { animation:orbit-spin 1s linear; }
-    @keyframes orbit-spin { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
-    .orbit-ring { position:absolute; top:50%; left:50%; border:1px solid rgba(255,255,255,0.1); border-radius:50%; transform:translate(-50%,-50%); }
-    .orbit-ring:nth-child(1){width:550px;height:550px;}
-    .orbit-ring:nth-child(2){width:450px;height:450px;}
-    .orbit-ring:nth-child(3){width:350px;height:350px;}
-    .orbit-ring:nth-child(4){width:250px;height:250px;}
-    .orbit-ring:nth-child(5){width:200px;height:200px;}
-    .dot { position:absolute; width:48px; height:48px; border-radius:50%; background-size:cover; background-position:center; cursor:pointer; transition:transform .3s, left .6s ease, top .6s ease; border:2px solid rgba(255,255,255,0.2); }
-    .dot:hover { transform:scale(1.2); }
-    .main-img { position:absolute; top:50%; left:50%; width:200px; height:200px; border-radius:50%; overflow:hidden; transform:translate(-50%,-50%); box-shadow:0 0 60px rgba(255,255,255,0.2); transition:opacity .4s; }
-    .main-img img { width:100%; height:100%; object-fit:cover; }
-  </style>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="use_cases.css" />
 </head>
 <body>
-<header>
-  <nav class="nav-left">
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
-  </nav>
-  <div class="logo">BLOCKCHAIN</div>
-  <nav class="nav-right">
-    <a href="#">Use Cases</a>
-    <a href="#">Technology</a>
-    <a href="#">Resources</a>
-  </nav>
-</header>
+  <header>
+    <a href="home.html" class="logo">My Little Blockain</a>
+  </header>
 
-<div class="content">
-  <div class="usecase-name" id="usecaseName">Select a Use Case</div>
-  <div class="usecase-description" id="usecaseDesc">Click any icon in orbit to learn more.</div>
-  <div class="orbit-container" id="orbitContainer">
-    <div class="orbit-ring"></div>
-    <div class="orbit-ring"></div>
-    <div class="orbit-ring"></div>
-    <div class="orbit-ring"></div>
-    <div class="orbit-ring"></div>
-    <div class="dot" id="dot0"></div>
-    <div class="dot" id="dot1"></div>
-    <div class="dot" id="dot2"></div>
-    <div class="dot" id="dot3"></div>
-    <div class="dot" id="dot4"></div>
-    <div class="main-img" id="mainImg"><img src="./assets/default.png" alt="Default"></div>
+  <div class="content">
+    <div class="usecase-name" id="usecaseName">Select a Use Case</div>
+    <div class="usecase-description" id="usecaseDesc">
+      Click any icon in orbit to learn more.
+    </div>
+    <div class="orbit-container" id="orbitContainer">
+      <!-- Orbit rings -->
+      <div class="orbit-ring" style="width:550px; height:550px"></div>
+      <div class="orbit-ring" style="width:450px; height:450px"></div>
+      <div class="orbit-ring" style="width:350px; height:350px"></div>
+      <div class="orbit-ring" style="width:250px; height:250px"></div>
+      <div class="orbit-ring" style="width:200px; height:200px"></div>
+
+      <!-- Dots -->
+      <div class="dot" id="dot0"></div>
+      <div class="dot" id="dot1"></div>
+      <div class="dot" id="dot2"></div>
+      <div class="dot" id="dot3"></div>
+      <div class="dot" id="dot4"></div>
+
+      <div class="main-img" id="mainImg">
+        <img src="./assets/default.png" alt="Default" />
+      </div>
+    </div>
   </div>
-</div>
-
-<script>
-  let useCases = [
-    { name:'Decentralised Finance',    desc:'Peer-to-peer financial services...', file:'transfer.png', orbitIdx:1 },
-    { name:'Digital Identity',         desc:'Self-sovereign identity...',      file:'identity.png', orbitIdx:2 },
-    { name:'Energy & Sustainability',  desc:'Transparent energy trading...',    file:'energy.png', orbitIdx:3 },
-    { name:'Healthcare',               desc:'Secure patient records...',        file:'health.png', orbitIdx:4 },
-    { name:'Cryptocurrencies & NFTs',  desc:'Digital assets on-chain...',       file:'bitcoin.png', orbitIdx:5 }
-  ];
-  const radii = [275, 225, 175, 125, 100];
-  const orbit = document.getElementById('orbitContainer');
-  const nameEl = document.getElementById('usecaseName');
-  const descEl = document.getElementById('usecaseDesc');
-  const mainImg = document.querySelector('#mainImg img');
-  const dots = useCases.map((_, i) => document.getElementById('dot'+i));
-
-  function positionDots() {
-    const total = useCases.length;
-    dots.forEach((dot, i) => {
-      const u = useCases[i];
-      const angle = (i/total)*2*Math.PI;
-      const r = radii[u.orbitIdx-1];
-      dot.style.left = `${300 + r*Math.cos(angle) -24}px`;
-      dot.style.top  = `${300 + r*Math.sin(angle) -24}px`;
-      dot.style.backgroundImage = `url('./assets/${u.file}')`;
-    });
-  }
-
-  dots.forEach((dot, i) => dot.addEventListener('click', () => selectUseCase(i)));
-
-  function selectUseCase(idx) {
-    orbit.classList.add('spin');
-    setTimeout(() => orbit.classList.remove('spin'), 1000);
-
-    // show selected in center
-    nameEl.style.opacity = descEl.style.opacity = mainImg.style.opacity = 0;
-    setTimeout(() => {
-      const u = useCases[idx];
-      nameEl.textContent = u.name;
-      descEl.textContent = u.desc;
-      mainImg.src = `./assets/${u.file}`;
-      mainImg.alt = u.name;
-      nameEl.style.opacity = descEl.style.opacity = mainImg.style.opacity = 1;
-      // reorder useCases so that clicked moves to front
-      useCases.unshift(useCases.splice(idx,1)[0]);
-      // update orbitIdx cycling inward
-      useCases = useCases.map((uc, i) => ({ ...uc, orbitIdx: (i%5)+1 }));
-      positionDots();
-    }, 400);
-  }
-
-  // initial layout
-  positionDots();
-</script>
+  <script src="use_cases.js"></script>
 </body>
 </html>

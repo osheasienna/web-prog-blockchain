@@ -85,7 +85,7 @@ nav a {
 
 /* Hero Text Positions */
 .big-word {
-  font-size: 12rem;
+  font-size: 10rem;
   color: white;
   display: inline-block;
   margin-right: 1rem;
@@ -94,7 +94,7 @@ nav a {
 
 .text-behind {
   position: absolute;
-  top: 15%;
+  top: 13%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 0;
@@ -103,7 +103,7 @@ nav a {
 
 .text-left {
   position: absolute;
-  top: 30%;
+  top: 27%;
   left: 8%;
   font-size: 10rem;
   color: white;
@@ -112,7 +112,7 @@ nav a {
 
 .text-right {
   position: absolute;
-  top: 30%;
+  top: 27%;
   right: 5%;
   font-size: 10rem;
   color: white;
@@ -124,15 +124,20 @@ nav a {
   top: 60%;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 7rem;
+  display: flex;
+  align-items: baseline; /* Align based on text baseline */
+  font-size: 10rem;
   color: white;
-  display: inline-block;
-  z-index: 3;
+  z-index: 0;
+  gap: 1rem; /* Optional spacing */
 }
+
 
 .text-below .nft {
   font-family: 'Anton', cursive;
   margin-right: 0.5rem;
+  font-size: 6rem;
+  z-index: 0;
 }
 
 /*---------------------------------
