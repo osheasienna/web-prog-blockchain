@@ -45,11 +45,11 @@ html {
   ---------------------------------*/
   .simulator {
     position: fixed;
-    top: 11rem;
+    top: 10rem;
     left: 50%;
     transform: translateX(-50%);
-    width: 80%;
-    height: 60%;
+    width: 90%;
+    height: 70%;
     background: #1a1a1a;
     border: 2px solid #ff9f1c;
     border-radius: 0.75rem;

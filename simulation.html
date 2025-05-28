@@ -26,9 +26,13 @@
   <div class="text">
     <h2>01 Hash</h2>
     <p>
-      A hash is the fixed-length fingerprint of any input data, produced by a
-      one-way cryptographic function (e.g. SHA-256). Even a tiny change yields
-      a completely different output.
+      A hash function (we use SHA-256) takes any input—text, numbers, even gigabytes of data—and
+      produces a fixed-length “fingerprint.” This one-way, collision-resistant mapping is the foundation of
+      blockchain immutability: even a single-bit change in the input yields a radically different output, and
+      you can’t reverse it to recover the original.
+
+      In the demo you can type or paste any message and instantly see its 64-character hash update; flip one character
+      and watch the entire fingerprint “avalanche,” illustrating why hashes anchor data tamper-evidently.
     </p>
   </div>
 </section>
@@ -37,9 +41,13 @@
   <div class="text">
     <h2>02 Block</h2>
     <p>
-      A block bundles a batch of validated transactions (or data), plus the
-      previous block’s hash, timestamp, and a nonce miners adjust to satisfy
-      proof-of-work.
+      A block bundles together an index, a nonce, your data payload (e.g. transactions), the previous block’s hash,
+      and its own resulting hash. This structure underpins proof-of-work: miners tweak the nonce until the hash meets
+      a difficulty target (e.g. starts with “0000”), and chaining via the previous-hash links blocks into an immutable
+      ledger.
+
+      In the simulator you can edit any field to see the hash turn red (invalid), then click Mine to brute-force
+      a new nonce until the hash field turns green, demonstrating how proof-of-work locks in block content.
     </p>
   </div>
 </section>
@@ -48,8 +56,12 @@
   <div class="text">
     <h2>03 Chain</h2>
     <p>
-      Blocks link together via each block's reference to the previous block's hash,
-      forming an immutable ledger.
+      A blockchain is simply a sequence of blocks, each pointing to its predecessor via its hash.
+      This chaining makes any tampering wildly expensive, since an attacker would have to re-mine every subsequent
+      block faster than the rest of the network.
+
+      The demo shows you a row of blocks you can edit: change block 3 and blocks 4–5 immediately turn red, forcing
+      you to re-mine each in order to restore validity—perfectly illustrating why history is so hard to rewrite.
     </p>
   </div>
 </section>
@@ -58,8 +70,12 @@
   <div class="text">
     <h2>04 Network</h2>
     <p>
-      Nodes broadcast new blocks and transactions to each other, ensuring everyone
-      stays in consensus.
+      A blockchain network consists of independent peers (nodes), each holding its own copy of the chain and always
+      adopting the longest valid version they know. This ensures consensus and resilience: even if some peers go
+      offline or temporarily disagree, the network converges on a single history.
+
+      In the interactive view you see multiple side-by-side chains; when Peer A mines ahead, Peer B automatically
+      downloads and switches to the longer chain, showing how forks resolve and consensus emerges.
     </p>
   </div>
 </section>
@@ -68,8 +84,13 @@
   <div class="text">
     <h2>05 Tokens</h2>
     <p>
-      Tokens represent value. Balances update as transactions move tokens
-      between addresses.
+      Tokens are simple “value, from → to” records—the state machine that tracks who owns what. Recording them on the
+      chain makes the ledger auditable and tamper-evident: changing any transfer breaks the block’s hash and cascades
+      invalidity downstream.
+
+      The simulator embeds multiple token rows per block; tweaking any bogus transfer turns the hash red across all
+      affected blocks, and you can re-mine to lock in a new, valid transaction history, demonstrating how blockchains
+      enforce transparent, verifiable token transfers.
     </p>
   </div>
 </section>
@@ -78,8 +99,11 @@
   <div class="text">
     <h2>06 Coinbase</h2>
     <p>
-      The coinbase transaction rewards the miner with new tokens for
-      securing the network.
+      The coinbase transaction is a special, first-in-block entry that creates brand-new coins and awards them to the
+      miner—this is how new tokens enter circulation and how miners earn their reward. It aligns economic incentives
+      with network security: the greater the mining effort, the more coins you can generate. In the demo, each block’s
+      first TX has only a “to” address and an amount; editing that reward changes the block’s hash, and mining locks in
+      a fresh coinbase payout, clearly showing how block rewards fuel the blockchain economy.
     </p>
   </div>
 </section>
