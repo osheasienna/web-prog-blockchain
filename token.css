@@ -1,0 +1,128 @@
+/* styles.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 1em;
+}
+header h1 {
+    margin: 0 0 0.5em;
+}
+header nav ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    gap: 1em;
+}
+header nav ul li a {
+    color: #ccc;
+    text-decoration: none;
+}
+header nav ul li a.active,
+header nav ul li a:hover {
+    color: #fff;
+}
+
+#peers {
+    display: flex;
+    gap: 1em;
+    padding: 1em;
+}
+
+.peer {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 1em;
+    box-sizing: border-box;
+    background: #e8f5e9;
+}
+
+.token-block {
+    border: 1px solid #999;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    background: #fafafa;
+}
+.token-block .block-header {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+.token-block label {
+    display: block;
+    margin-bottom: 0.25em;
+}
+.token-block input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.25em;
+}
+.token-block .hash {
+    font-family: monospace;
+    margin-top: 0.5em;
+    padding: 0.5em;
+    background: #f5f5f5;
+}
+.token-block .hash.red {
+    color: red;
+}
+.token-block .hash.green {
+    color: green;
+}
+
+button.ladda-button {
+    margin-top: 0.5em;
+}
+
+/* —— your existing styles above —— */
+
+.tx-wrap {
+    margin-bottom: 0.75em;
+    /* allow horizontal scroll on very narrow screens */
+    overflow-x: auto;
+}
+
+.tx-wrap label {
+    display: inline-block;
+    vertical-align: top;
+    width: 60px;
+    font-weight: bold;
+    padding-top: 8px; /* align with first row of inputs */
+}
+
+.tx-table {
+    display: inline-block;
+    width: calc(100% - 60px);
+    border-collapse: collapse;
+}
+
+.tx-table th,
+.tx-table td {
+    border: 1px solid #ccc;
+    padding: 0.25em 0.5em;
+}
+
+.tx-table th {
+    background: #eee;
+    text-align: left;
+    font-weight: normal;
+}
+
+.tx-table td input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.25em;
+    border: none;
+    outline: none;
+    font-family: inherit;
+}
+
+.tx-table td.arrow {
+    text-align: center;
+    width: 2em;
+    background: #fafafa;
+}
