@@ -3,20 +3,19 @@
 // Fully updated useCases array with correct file names
 let useCases = [
   {
-    name: "Decentralized Finance (DeFi)",
+    name: "DECENTRALIZED FINANCE",
     desc: `
       <ul>
         <li><strong>Peer-to-Peer Lending &amp; Borrowing:</strong> Connect borrowers and lenders directly through smart contracts that automate collateral management, interest accrual, and repayment schedules.</li>
         <li><strong>Decentralized Exchanges (DEXs):</strong> Facilitate trustless token swaps from user wallets, removing custodial risk and enabling continuous liquidity pools.</li>
         <li><strong>Stablecoins &amp; Algorithmic Assets:</strong> Provide on-chain assets pegged to fiat currencies or commodities, ensuring stable value for remittances, savings, and commerce.</li>
-        <li><strong>Yield Farming &amp; Liquidity Mining:</strong> Allow users to stake digital assets in liquidity pools and earn transparent, code-driven rewards.</li>
-        <li><strong>On-Chain Insurance:</strong> Automate claims and payouts via parametric policies, triggering compensation when predefined conditions are met (e.g., weather events, flight delays).</li>
-      </ul>
+        <li><strong>Yield Farming &amp; Liquidity Mining:</strong> Allow users to stake digital assets in liquidity pools and earn transparent, code-driven rewards.</li>      </ul>
     `,
-    file: "transfer.png"      // DeFi → transfer.png
+    file: "transfer.png" ,     // DeFi → transfer.png
+    gradient: "linear-gradient(135deg, #6b1bb8 0%, #39007f 100%)"
   },
   {
-    name: "Healthcare",
+    name: "HEALTHCARE",
     desc: `
       <ul>
         <li><strong>Secure Medical Records:</strong> Store hashes of patient data on-chain to detect tampering, while keeping sensitive information off-chain for privacy.</li>
@@ -26,10 +25,11 @@ let useCases = [
         <li><strong>IoT &amp; Device Security:</strong> Record firmware updates and usage logs for connected medical devices, strengthening patient safety and operational integrity.</li>
       </ul>
     `,
-    file: "health.png"
+    file: "health.png",
+    gradient: "linear-gradient(135deg, #b02628 0%, #af3f3f 100%)"
   },
   {
-    name: "Energy & Sustainability",
+    name: "ENERGY & SUSTAINABILITY",
     desc: `
       <ul>
         <li><strong>Peer-to-Peer Energy Trading:</strong> Allow prosumers (solar panel owners) to sell surplus power directly to neighbors via automated smart contracts.</li>
@@ -39,10 +39,11 @@ let useCases = [
         <li><strong>Sustainable Supply Chains:</strong> Verify the provenance of raw materials (e.g., conflict-free minerals) through immutable, end-to-end tracking.</li>
       </ul>
     `,
-    file: "energy.png"
+    file: "energy.png",
+    gradient: "linear-gradient(135deg, #3e7622 0%, #6ca148 100%)"
   },
   {
-    name: "Cryptocurrencies & NFTs",
+    name: "CRYPTOCURRENCIES & NFTS",
     desc: `
       <ul>
         <li><strong>Cryptocurrencies:</strong> Enable borderless, censorship-resistant value transfers and programmable money via smart contracts.</li>
@@ -52,21 +53,21 @@ let useCases = [
         <li><strong>Automated Royalties:</strong> Enforce creator compensation on every secondary sale, ensuring artists and developers earn ongoing revenue.</li>
       </ul>
     `,
-    file: "bitcoin.png"       // NFTs → bitcoin.png
+    file: "bitcoin.png",       // NFTs → bitcoin.png
+    gradient: "linear-gradient(135deg, #d49b15 0%, #bc200f 100%)"
   },
   {
-    name: "Digital Identity",
+    name: "DIGITAL IDENTITY",
     desc: `
       <ul>
         <li><strong>Self-Sovereign Identity (SSI):</strong> Users manage cryptographic keys to selectively share identity attributes (e.g., age, credentials) without intermediaries.</li>
         <li><strong>Verifiable Credentials:</strong> Institutions (universities, governments) issue signed digital credentials on-chain, instantly verifiable by employers and service providers.</li>
         <li><strong>Streamlined KYC/AML:</strong> Shared on-chain attestations reduce repetitive identity checks—once verified, users can onboard to new services swiftly.</li>
-        <li><strong>Passwordless Authentication:</strong> Public-key cryptography enables secure, phishing-resistant logins through signed challenges instead of passwords.</li>
-        <li><strong>Key Recovery &amp; Delegation:</strong> Social recovery and multi-signature schemes allow trusted contacts to help restore access if credentials are lost.</li>
       </ul>
       <p>By leveraging blockchain’s foundational properties—decentralization, immutability, and programmability—businesses across these sectors can increase transparency, reduce costs, and empower users with greater control over their assets and data.</p>
     `,
-    file: "identity.png"
+    file: "identity.png",
+    gradient: "linear-gradient(135deg, #011528 0%, #007288 100%)"
   }
 ];
 
@@ -127,6 +128,7 @@ function selectUseCase(idx) {
     descEl.innerHTML   = u.desc;
     mainImg.src        = `./assets/${u.file}`;
     mainImg.alt        = u.name;
+    document.querySelector('body').style.background = u.gradient;
     nameEl.style.opacity = descEl.style.opacity = mainImg.style.opacity = 1;
 
     // rotate array so next click stays in sync
