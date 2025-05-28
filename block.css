@@ -1,0 +1,48 @@
+
+    body { 
+        font-family: sans-serif; 
+        background: #ff9f1c; 
+    }
+    .container {
+      max-width: 800px; 
+      margin: 40px auto;
+       padding: 20px;
+      border-radius: 6px; 
+      transition: background 0.3s;
+    }
+    .valid{ 
+        background: #dff0d8; 
+    }
+    .invalid { 
+        background: #f2dede; 
+    }
+    .form-group {
+         margin-bottom: 1em; 
+    }
+    label { 
+        display: block; font-weight: bold; margin-bottom: 0.3em; 
+    }
+    input[type="number"],
+    input[type="text"],
+    textarea {
+      width: 100%; 
+      padding: 0.6em;
+       border: 1px solid #ccc;
+      border-radius: 4px; 
+      box-sizing: border-box;
+    }
+    input[readonly] { 
+        background: #eee; 
+    }
+    button {
+      padding: 0.6em 1.2em; 
+      border: none; 
+      border-radius: 4px;
+      background: #337ab7; 
+      color: white; 
+      font-size: 1em;
+      cursor: pointer;
+    }
+    button:hover {
+         background: #286090; 
+    }

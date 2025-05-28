@@ -2,85 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Simple Blockchain Demo</title>
-  <script src="https://cdn.jsdelivr.net/npm/js-sha256@0.9.0/src/sha256.min.js"></script>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
-    body {
-      font-family: sans-serif;
-      background: #ff9f1c;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    /* 1) Make the chain fill the viewport (minus 40px total padding) */
-    #chain {
-      display: flex;
-      gap: 20px;
-      height: calc(100vh - 40px);
-    }
-
-    /* 2) Each block is a vertical flex-box that stretches to fill #chain */
-    .block {
-      flex: 1;                              /* fill available width equally */
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;       /* top fields + bottom button */
-      background: #ffdce0;
-      border-radius: 8px;
-      padding: 20px;
-    }
-
-    /* invalid = red, valid = green */
-    .block.invalid { background: #f8d7da; }
-    .block.valid   { background: #d4edda;  }
-
-    /* labels above inputs, left-aligned */
-    .block label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    /* form controls */
-    .block input,
-    .block textarea {
-      width: 100%;
-      padding: 8px;
-      box-sizing: border-box;
-      font-family: monospace;
-      margin-bottom: 15px;     /* space between fields */
-    }
-
-    /* data box stretches in the middle */
-    .block textarea {
-      flex: 1;
-      resize: vertical;
-      margin-bottom: 15px;
-    }
-
-    /* 3) Style the Mine button and keep it inside the block */
-    .block button.mine {
-      align-self: flex-start; /* left-align */
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 24px;
-      font-size: 1em;
-      border-radius: 4px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-    }
-
-    .block button.mine:hover {
-      background-color: #0056b3;
-    }
-
-  </style>
+  <title>Chain Simulation</title>
+  <link rel="stylesheet" href="chain.css" />
 </head>
 <body>
 
@@ -128,57 +51,6 @@
     <button class="mine">Mine</button>
   </div>
 </div>
-
-<script>
-  const difficulty = "0000";
-  const blocks = Array.from(document.querySelectorAll('.block'));
-
-  // initialize
-  blocks.forEach(block => {
-    block.querySelector('.data').addEventListener('input', updateChain);
-    block.querySelector('.nonce').addEventListener('input', updateChain);
-    block.querySelector('.mine').addEventListener('click', () => mineBlock(block));
-  });
-  updateChain();
-
-  function updateChain() {
-    blocks.reduce((prevHash, block) => {
-      const prevInput = block.querySelector('.prev');
-      prevInput.value = prevHash;
-      updateBlock(block);
-      return block.querySelector('.hash').value;
-    }, '0'.repeat(64));
-  }
-
-  function updateBlock(block) {
-    const prev = block.querySelector('.prev').value;
-    const data = block.querySelector('.data').value;
-    const nonce = block.querySelector('.nonce').value;
-    const hashInput = block.querySelector('.hash');
-    const h = sha256(prev + data + nonce);
-    hashInput.value = h;
-    block.classList.toggle('invalid', !h.startsWith(difficulty));
-  }
-
-  function mineBlock(block) {
-    const prev = block.querySelector('.prev').value;
-    const data = block.querySelector('.data').value;
-    let nonce = 0, h;
-    do {
-      h = sha256(prev + data + nonce);
-      nonce++;
-    } while (!h.startsWith(difficulty));
-    // last increment overshoots by one
-    nonce--;
-    block.querySelector('.nonce').value = nonce;
-    block.querySelector('.hash').value = h;
-    block.classList.remove('invalid');
-    block.classList.add('valid');
-
-    // re-propagate to update subsequent blocks
-    updateChain();
-  }
-</script>
-
+<script src="chain.js"></script>
 </body>
 </html>
