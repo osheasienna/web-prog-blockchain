@@ -1,95 +1,135 @@
 "use strict";
 
+// Fully updated useCases array with correct file names
 let useCases = [
   {
-    name: "Decentralised Finance",
-    desc: "Peer-to-peer financial services...",
-    file: "transfer.png",
-    orbitIdx: 1,
-  },
-  {
-    name: "Digital Identity",
-    desc: "Self-sovereign identity...",
-    file: "identity.png",
-    orbitIdx: 2,
-  },
-  {
-    name: "Energy & Sustainability",
-    desc: "Transparent energy trading...",
-    file: "energy.png",
-    orbitIdx: 3,
+    name: "Decentralized Finance (DeFi)",
+    desc: `
+      <ul>
+        <li><strong>Peer-to-Peer Lending &amp; Borrowing:</strong> Connect borrowers and lenders directly through smart contracts that automate collateral management, interest accrual, and repayment schedules.</li>
+        <li><strong>Decentralized Exchanges (DEXs):</strong> Facilitate trustless token swaps from user wallets, removing custodial risk and enabling continuous liquidity pools.</li>
+        <li><strong>Stablecoins &amp; Algorithmic Assets:</strong> Provide on-chain assets pegged to fiat currencies or commodities, ensuring stable value for remittances, savings, and commerce.</li>
+        <li><strong>Yield Farming &amp; Liquidity Mining:</strong> Allow users to stake digital assets in liquidity pools and earn transparent, code-driven rewards.</li>
+        <li><strong>On-Chain Insurance:</strong> Automate claims and payouts via parametric policies, triggering compensation when predefined conditions are met (e.g., weather events, flight delays).</li>
+      </ul>
+    `,
+    file: "transfer.png"      // DeFi → transfer.png
   },
   {
     name: "Healthcare",
-    desc: "Secure patient records...",
-    file: "health.png",
-    orbitIdx: 4,
+    desc: `
+      <ul>
+        <li><strong>Secure Medical Records:</strong> Store hashes of patient data on-chain to detect tampering, while keeping sensitive information off-chain for privacy.</li>
+        <li><strong>Interoperable Health Exchanges:</strong> Enable hospitals, clinics, and labs to share patient records securely—patients remain in control of access permissions.</li>
+        <li><strong>Pharmaceutical Supply Chain:</strong> Log every step from manufacturing to delivery, reducing counterfeit risk and ensuring drug authenticity.</li>
+        <li><strong>Clinical Trial Transparency:</strong> Timestamp informed consent and trial data entries on a public ledger, enhancing auditability and regulatory compliance.</li>
+        <li><strong>IoT &amp; Device Security:</strong> Record firmware updates and usage logs for connected medical devices, strengthening patient safety and operational integrity.</li>
+      </ul>
+    `,
+    file: "health.png"
+  },
+  {
+    name: "Energy & Sustainability",
+    desc: `
+      <ul>
+        <li><strong>Peer-to-Peer Energy Trading:</strong> Allow prosumers (solar panel owners) to sell surplus power directly to neighbors via automated smart contracts.</li>
+        <li><strong>Renewable Energy Certificates (RECs):</strong> Tokenize one megawatt-hour of green energy on-chain, preventing double-spending and streamlining certificate management.</li>
+        <li><strong>Carbon Credit Tracking:</strong> Issue, trade, and retire carbon credits on a shared ledger, ensuring each offset is unique and auditable.</li>
+        <li><strong>Demand Response Programs:</strong> Use smart meters and automated incentives to balance grid load by rewarding consumers who reduce usage during peaks.</li>
+        <li><strong>Sustainable Supply Chains:</strong> Verify the provenance of raw materials (e.g., conflict-free minerals) through immutable, end-to-end tracking.</li>
+      </ul>
+    `,
+    file: "energy.png"
   },
   {
     name: "Cryptocurrencies & NFTs",
-    desc: "Digital assets on-chain...",
-    file: "bitcoin.png",
-    orbitIdx: 5,
+    desc: `
+      <ul>
+        <li><strong>Cryptocurrencies:</strong> Enable borderless, censorship-resistant value transfers and programmable money via smart contracts.</li>
+        <li><strong>Asset Tokenization:</strong> Represent physical or financial assets (real estate, stocks) as fractional on-chain tokens, unlocking 24/7 trading and liquidity.</li>
+        <li><strong>Non-Fungible Tokens (NFTs):</strong> Create provably unique digital collectibles, art, in-game items, event tickets, and more with embedded ownership metadata.</li>
+        <li><strong>Decentralized Gaming &amp; Metaverses:</strong> Let players truly own and trade in-game assets across platforms, with economies governed by transparent code.</li>
+        <li><strong>Automated Royalties:</strong> Enforce creator compensation on every secondary sale, ensuring artists and developers earn ongoing revenue.</li>
+      </ul>
+    `,
+    file: "bitcoin.png"       // NFTs → bitcoin.png
   },
+  {
+    name: "Digital Identity",
+    desc: `
+      <ul>
+        <li><strong>Self-Sovereign Identity (SSI):</strong> Users manage cryptographic keys to selectively share identity attributes (e.g., age, credentials) without intermediaries.</li>
+        <li><strong>Verifiable Credentials:</strong> Institutions (universities, governments) issue signed digital credentials on-chain, instantly verifiable by employers and service providers.</li>
+        <li><strong>Streamlined KYC/AML:</strong> Shared on-chain attestations reduce repetitive identity checks—once verified, users can onboard to new services swiftly.</li>
+        <li><strong>Passwordless Authentication:</strong> Public-key cryptography enables secure, phishing-resistant logins through signed challenges instead of passwords.</li>
+        <li><strong>Key Recovery &amp; Delegation:</strong> Social recovery and multi-signature schemes allow trusted contacts to help restore access if credentials are lost.</li>
+      </ul>
+      <p>By leveraging blockchain’s foundational properties—decentralization, immutability, and programmability—businesses across these sectors can increase transparency, reduce costs, and empower users with greater control over their assets and data.</p>
+    `,
+    file: "identity.png"
+  }
 ];
 
-const radii = [275, 225, 175, 225, 175];
-const center = 300; // orbit-container is 600x600
+// center of your 600×600 container
+const CENTER = 300;
 
-const orbit = document.getElementById("orbitContainer");
-const nameEl = document.getElementById("usecaseName");
-const descEl = document.getElementById("usecaseDesc");
-const mainImg = document.querySelector("#mainImg img");
-const dots = useCases.map((_, i) => document.getElementById("dot" + i));
+// custom radii per dot
+const radii = [175, 225, 275, 175, 225];
 
-function positionDots() {
-    const total = useCases.length;
-    const offset = Math.PI / 10; // ~18 degrees offset for symmetry
-  
-    // Manually assign orbit radii for each dot here, ignoring useCases.orbitIdx:
-    // Dot order: 0, 1, 2, 3, 4
-    // Assign radii as per your request:
-    const customRadii = [175, 225, 275, 175, 225]; // dot2 moved to biggest orbit (275), dot3 smallest orbit (100)
-  
+// grab elements
+const orbit     = document.getElementById("orbitContainer");
+const nameEl    = document.getElementById("usecaseName");
+const descEl    = document.getElementById("usecaseDesc");
+const mainImg   = document.querySelector("#mainImg img");
+const dots      = useCases.map((_, i) => {
+  const d = document.getElementById("dot" + i);
+  d.style.backgroundImage = `url('./assets/${useCases[i].file}')`;
+  return d;
+});
+
+const N = useCases.length;
+
+// 1) Generate a random start-angle and a random speed for each dot
+let angles = Array.from({length: N}, () => Math.random() * Math.PI * 2);
+let speeds = Array.from({length: N}, () => 0.0002 + Math.random() * 0.0003);
+
+// 2) The animation loop
+let lastTime = null;
+function animate(time) {
+  if (lastTime !== null) {
+    const dt = time - lastTime;
     dots.forEach((dot, i) => {
-      const angle = (i * 2 * Math.PI / total) + offset;
-      const r = customRadii[i];
-      dot.style.left = `${300 + r * Math.cos(angle) - 24}px`;
-      dot.style.top  = `${300 + r * Math.sin(angle) - 24}px`;
-      dot.style.backgroundImage = `url('./assets/${useCases[i].file}')`;
+      angles[i] += speeds[i] * dt;
+      const x = CENTER + radii[i] * Math.cos(angles[i]) - 24;
+      const y = CENTER + radii[i] * Math.sin(angles[i]) - 24;
+      dot.style.left = `${x}px`;
+      dot.style.top  = `${y}px`;
     });
   }
-  
-  
+  lastTime = time;
+  requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);
 
+// 3) Click handlers
 dots.forEach((dot, i) => dot.addEventListener("click", () => selectUseCase(i)));
 
 function selectUseCase(idx) {
   orbit.classList.add("spin");
   setTimeout(() => orbit.classList.remove("spin"), 1000);
 
-  // Fade out current content
+  // fade out
   nameEl.style.opacity = descEl.style.opacity = mainImg.style.opacity = 0;
 
   setTimeout(() => {
     const u = useCases[idx];
     nameEl.textContent = u.name;
-    descEl.textContent = u.desc;
-    mainImg.src = `./assets/${u.file}`;
-    mainImg.alt = u.name;
-
-    // Fade in new content
+    descEl.innerHTML   = u.desc;
+    mainImg.src        = `./assets/${u.file}`;
+    mainImg.alt        = u.name;
     nameEl.style.opacity = descEl.style.opacity = mainImg.style.opacity = 1;
 
-    // Move selected useCase to front (start of array)
+    // rotate array so next click stays in sync
     useCases.unshift(useCases.splice(idx, 1)[0]);
-
-    // Update orbitIdx cycling inward 1-5 again
-    useCases = useCases.map((uc, i) => ({ ...uc, orbitIdx: (i % 5) + 1 }));
-
-    positionDots();
   }, 400);
 }
-
-// Initial layout
-positionDots();
