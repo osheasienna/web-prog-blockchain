@@ -16,12 +16,8 @@
             overflow-x: auto;
         }
         .block {
-            /* set the “base” width to 300px */
             flex: 0 0 280px;
-                /* prevent it from growing past 300px */
             max-width: 280px;
-
-                /* keep the rest of your styles */
             border: 2px solid #ccc;
             border-radius: 6px;
             padding: 10px;

@@ -1,4 +1,4 @@
-/* token.css */
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -46,7 +46,7 @@ header nav ul li a:hover {
     box-sizing: border-box;
     background: #e8f5e9;
     align-self: flex-start;   /* let container shrink-fit to blocks */
-    width: max-content;       /* expand to cover all blocks */
+    width: max-content;      
 }
 
 .peer h2 {
@@ -91,8 +91,6 @@ header nav ul li a:hover {
 button.ladda-button {
     margin-top: 0.5em;
 }
-
-/* —— your existing styles above —— */
 
 tx-wrap {
     margin-bottom: 0.75em;

@@ -1,4 +1,4 @@
-/* —— Reset & Base —— */
+
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +15,6 @@ body {
   );
 }
 
-/* —— Header —— */
 header {
   display: flex;
   align-items: center;
@@ -31,7 +30,6 @@ header {
   color: inherit;
 }
 
-/* —— Main Layout Container —— */
 .content {
   position: relative;
   width: 100vw;
@@ -39,11 +37,11 @@ header {
   transition: background 0.6s ease;
 }
 
-/* —— Orbit Container (Fixed position) —— */
+
 .orbit-container {
   position: absolute;
   top: 40%;
-  left: 65%; /* adjust this percentage to shift entire orbit right/left */
+  left: 65%; 
   width: 600px;
   height: 600px;
   transform: translate(-50%, -50%);
@@ -52,12 +50,14 @@ header {
 .orbit-container.spin {
   animation: orbit-spin 1s linear;
 }
+
+/* calls the animation orbit-spin*/
 @keyframes orbit-spin {
   from { transform: translate(-50%, -50%) rotate(0deg); }
   to   { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* —— Orbit Rings & Dots —— */
+
 .orbit-ring {
   position: absolute;
   top: 50%;
@@ -83,7 +83,6 @@ header {
   transform: scale(1.2);
 }
 
-/* —— Center Globe Image —— */
 .main-img {
   position: absolute;
   top: 50%;
@@ -102,10 +101,9 @@ header {
   object-fit: cover;
 }
 
-/* —— Text Wrapper (Fixed position) —— */
 .text-wrapper {
   position: absolute;
-  top: 100px; /* adjust to bring down under header */
+  top: 100px; 
   left: 150px;
   max-width: 400px;
   display: flex;

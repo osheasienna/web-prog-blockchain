@@ -1,8 +1,4 @@
-/*---------------------------------
-  Scrollbar & Base Styles
----------------------------------*/
 
-/* Hide native scrollbars */
 html {
     scrollbar-width: none; /* Firefox */
   }
@@ -35,14 +31,10 @@ html {
     padding: 0;
   }
   
-  /* Wrapper container */
   .wrapper {
     position: relative;
   }
   
-  /*---------------------------------
-    Simulator Styles
-  ---------------------------------*/
   .simulator {
     position: fixed;
     top: 10rem;
@@ -65,9 +57,6 @@ html {
     border-radius: 0.5rem;
   }
   
-  /*---------------------------------
-    Section & Text Styling
-  ---------------------------------*/
   section {
     position: relative;
     height: 100vh;
@@ -114,9 +103,7 @@ html {
     color: #fef6e4;
   }
   
-  /*---------------------------------
-    Navigation Bar
-  ---------------------------------*/
+
   aside {
     position: fixed;
     top: 50%;

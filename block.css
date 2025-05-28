@@ -6,7 +6,7 @@
     .container {
       max-width: 800px; 
       margin: 40px auto;
-       padding: 20px;
+      padding: 20px;
       border-radius: 6px; 
       transition: background 0.3s;
     }
@@ -22,6 +22,7 @@
     label { 
         display: block; font-weight: bold; margin-bottom: 0.3em; 
     }
+    /* selects all inputs that have the type attribute set to number or text*/
     input[type="number"],
     input[type="text"],
     textarea {
@@ -31,6 +32,7 @@
       border-radius: 4px; 
       box-sizing: border-box;
     }
+    /*turns the non-edible parts grey*/
     input[readonly] { 
         background: #eee; 
     }

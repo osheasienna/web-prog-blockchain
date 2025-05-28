@@ -1,6 +1,4 @@
-/*---------------------------------
-  Base Styles
----------------------------------*/
+
 * {
   margin: 0;
   padding: 0;
@@ -15,9 +13,6 @@ body {
   overflow-x: hidden;
 }
 
-/*---------------------------------
-  Header
----------------------------------*/
 header {
   display: flex;
   justify-content: space-between;
@@ -37,9 +32,6 @@ nav a {
   font-size: 1rem;
 }
 
-/*---------------------------------
-  Hero Layout & Coin Positioning
----------------------------------*/
 .hero {
   position: relative;
   min-height: 100vh;
@@ -77,7 +69,7 @@ nav a {
   margin-bottom: 7rem;
 }
 
-/* Hero Text Positions */
+
 .big-word {
   font-size: 10rem;
   color: white;
@@ -91,7 +83,7 @@ nav a {
   top: 13%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 0;
+  z-index: 0; /* pushes the text behind so it can be behind the coin*/
   white-space: nowrap;
 }
 
@@ -123,7 +115,7 @@ nav a {
   font-size: 10rem;
   color: white;
   z-index: 0;
-  gap: 1rem; /* Optional spacing */
+  gap: 1rem; 
 }
 
 
@@ -134,9 +126,6 @@ nav a {
   z-index: 0;
 }
 
-/*---------------------------------
-  CTA Links
----------------------------------*/
 .cta {
   color: white;
   text-decoration: none;
@@ -144,6 +133,7 @@ nav a {
   text-shadow: none;
 }
 
+/* gives it the glowing effect*/
 .cta:hover {
   text-shadow:
     0 0 5px #fff,
@@ -157,9 +147,7 @@ nav a {
   text-decoration: none;
 }
 
-/*---------------------------------
-  Coin Styles
----------------------------------*/
+
 .hero .container {
   position: absolute;
   top: 35%;
@@ -179,15 +167,15 @@ nav a {
   animation: spinBitcoin 6s linear infinite;
 }
 
-/* Faces */
+
 .face {
   position: absolute;
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  backface-visibility: hidden;
-  background: radial-gradient(circle at 30% 30%, var(--face-light), var(--face-dark));
-  box-shadow: inset 0 .2em .5em rgba(0,0,0,0.3);
+  backface-visibility: hidden; /* Hides the back side of an element when it’s rotated in 3D space */
+  background: radial-gradient(circle at 30% 30%, var(--face-light), var(--face-dark)); /* Sets a radial gradient background so that it looks like a lighht spot on the coin */
+  box-shadow: inset 0 .2em .5em rgba(0,0,0,0.3); /* Adds an inset shadow inside the element so that the edges look darker*/
 }
 
 .face::before {
@@ -201,10 +189,11 @@ nav a {
   border-radius: 50%;
   filter: blur(.6em);
   transform-origin: center;
-  animation: shineFix 6s linear infinite;
+  animation: shineFix 6s linear infinite; /* runs an animation called shineFix forever*/
   pointer-events: none;
 }
 
+/* used to flip elements */
 .front { transform: translateZ(0.4em); }
 .back  { transform: rotateY(180deg) translateZ(0.4em); }
 
@@ -230,7 +219,6 @@ nav a {
   border-radius: 50%;
 }
 
-/* Rim Slices */
 .side {
   --r: 10em;
   position: absolute;
@@ -238,25 +226,18 @@ nav a {
   left: 50%;
   width: .8em;
   height: 3.2em;
-  /* no more gradient here! */
-  /* background: linear-gradient(to bottom, var(--rim-light), var(--rim-dark)); */
   border-top: .15em solid var(--sign);
   transform-style: preserve-3d;
 }
 
-/* now alternate */
+/* targets either odd or even sides and makes the gradient go from light to dark */
 .side:nth-child(odd) {
   background: linear-gradient(to bottom, var(--rim-light), var(--rim-dark));
 }
 .side:nth-child(even) {
-  background: linear-gradient(
-          to bottom,
-          var(--rim-light),
-          var(--sign)
-  );
+  background: linear-gradient(to bottom, var(--rim-light), var(--sign));
 }
 
-/* Coin Variables */
 .bitcoin {
   --face-light: #ffebc2;
   --face-dark: #d4a743;
@@ -266,7 +247,7 @@ nav a {
   --rim-dark: #301a0d;
 }
 
-/* Animations */
+/* Adding the Animations */
 @keyframes spinBitcoin {
   from { transform: rotateX(0) rotateY(0); }
   to   { transform: rotateX(360deg) rotateY(360deg); }
@@ -277,9 +258,7 @@ nav a {
   to   { transform: rotateX(-360deg) rotateY(-360deg) rotate(-30deg); }
 }
 
-/*---------------------------------
-  Optional: Quiz Section
----------------------------------*/
+
 .quiz-container {
   margin-top: 3rem;
 }
