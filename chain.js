@@ -45,7 +45,7 @@
     block.classList.remove('invalid');
     block.classList.add('valid');
 
-    // re-propagate to update subsequent blocks
+    // update subsequent blocks
     updateChain();
   }
 

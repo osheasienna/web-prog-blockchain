@@ -1,6 +1,7 @@
 "use strict";
 
 // Fully updated useCases array with correct file names
+// Consulted AI for the structure of the useCases
 let useCases = [
   {
     name: "DECENTRALIZED FINANCE",
@@ -78,6 +79,7 @@ const CENTER = 300;
 const radii = [175, 225, 275, 175, 225];
 
 // grab elements
+// consulted AI for mainImg
 const orbit     = document.getElementById("orbitContainer");
 const nameEl    = document.getElementById("usecaseName");
 const descEl    = document.getElementById("usecaseDesc");

@@ -36,7 +36,7 @@
         sim.appendChild(peerDiv);
     });
 
-    // SHA-256 helper
+    // SHA-256 helper -- found using AI CryptoJS
     function computeHash(text) {
         return CryptoJS.SHA256(text).toString();
     }
@@ -75,7 +75,7 @@
             });
     }
 
-    // walk the chain: set each block's prev to the hash of the one before it, then propagate
+    // set each block's prev to the hash of the one before it
     function updateChain() {
         const max = initial.length;
         const firstPeer = document.querySelector('.peer');
