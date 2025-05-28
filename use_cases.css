@@ -37,8 +37,8 @@ header {
 /* —— Orbit Container (Fixed position) —— */
 .orbit-container {
   position: absolute;
-  top: 50%;
-  left: 60%; /* adjust this percentage to shift entire orbit right/left */
+  top: 40%;
+  left: 65%; /* adjust this percentage to shift entire orbit right/left */
   width: 600px;
   height: 600px;
   transform: translate(-50%, -50%);
@@ -100,8 +100,8 @@ header {
 /* —— Text Wrapper (Fixed position) —— */
 .text-wrapper {
   position: absolute;
-  top: 140px; /* adjust to bring down under header */
-  left: 40px;
+  top: 100px; /* adjust to bring down under header */
+  left: 150px;
   max-width: 400px;
   display: flex;
   flex-direction: column;
